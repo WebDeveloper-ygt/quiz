@@ -22,6 +22,7 @@ import com.quiz.api.jersey.service.ExamService;
 import com.quiz.api.jersey.service.impl.ExamServiceImpl;
 import com.quiz.api.jersey.service.impl.UserServiceImpl;
 
+
 @Path("/")
 @Produces({ MediaType.APPLICATION_JSON })
 @Consumes({ MediaType.APPLICATION_JSON })
@@ -71,5 +72,10 @@ public class UserExamController implements ExamService {
 			@PathParam("examId") int examId) throws ExceptionOccurred, CustomException {
 		Response deleteExams = examServiceImpl.deleteExams(uriInfo, userId, examId);
 		return deleteExams;
+	}
+	
+	@Path("{examId}/questions")
+	public ExamQuestionsController examQuestionsController() {
+		return new ExamQuestionsController();
 	}
 }

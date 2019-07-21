@@ -10,6 +10,7 @@ public class ConstantUtils {
 	public static final String EXAMS="select * from quiz_exams";
 	public static final String EXAMS_ID="select * from quiz_exams where examId=";
 	public static final String EXAM_DELETE ="DELETE FROM quiz_exams WHERE examId=";
-
+	public static final String QUESTIONS_EXAMID ="SELECT * FROM quiz_questions where examId=";
+	public static final String QUSETION_OPTIONS="SELECT * FROM quizapi.question_options where questionId=";
 
 }

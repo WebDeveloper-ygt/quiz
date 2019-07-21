@@ -2,12 +2,12 @@ package com.quiz.api.jersey.model;
 
 import java.util.List;
 
-public class QuestionBean extends ExamBean {
+public class QuestionBean {
 
 	private int questionId;
 	private String questionType;
 	private String questionName;
-	private List<QuestionOptionBean> options;
+	private QuestionOptionBean options;
 
 	public QuestionBean() {
 		super();
@@ -37,11 +37,11 @@ public class QuestionBean extends ExamBean {
 		this.questionName = questionName;
 	}
 
-	public List<QuestionOptionBean> getOptions() {
+	public QuestionOptionBean getOptions() {
 		return options;
 	}
 
-	public void setOptions(List<QuestionOptionBean> options) {
+	public void setOptions(QuestionOptionBean options) {
 		this.options = options;
 	}
 
