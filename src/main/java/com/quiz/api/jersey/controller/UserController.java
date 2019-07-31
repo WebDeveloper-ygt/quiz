@@ -18,6 +18,7 @@ import org.apache.log4j.Logger;
 import com.quiz.api.jersey.exception.ExceptionOccurred;
 import com.quiz.api.jersey.exception.CustomException;
 import com.quiz.api.jersey.model.UserBean;
+import com.quiz.api.jersey.security.Authenticate;
 import com.quiz.api.jersey.service.UserService;
 import com.quiz.api.jersey.service.impl.UserServiceImpl;
 
@@ -34,6 +35,7 @@ public class UserController implements UserService {
 	}
 
 	@GET
+	@Authenticate
 	public Response getAllUsers(@Context UriInfo uriInfo) throws ExceptionOccurred, CustomException {
 		Response allUsers = userServiceImpl.getAllUsers(uriInfo);
 		return allUsers;
