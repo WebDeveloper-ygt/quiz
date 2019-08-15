@@ -1,8 +1,17 @@
 package com.quiz.api.jersey.utils;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
+import javax.ws.rs.core.Response.Status;
+import javax.ws.rs.core.UriBuilder;
 
 import org.apache.log4j.Logger;
+
+import com.quiz.api.jersey.exception.CustomException;
+import com.quiz.api.jersey.security.AuthenticationController;
 
 public class HateoasUtils {
 	 
@@ -12,6 +21,8 @@ public class HateoasUtils {
 	}
 
 	static private Links link;
+	static private List<Links> exceptionLink;
+	static private CustomException exception;
 	public static Links getDetailsById(UriInfo uriInfo,int id, String message) {
 		//System.out.println(id);
 		link = new Links();	
@@ -39,5 +50,25 @@ public class HateoasUtils {
 		return link;
 	}
 
-	
+	public static Response unAuthorizedException(UriInfo uriInfo) {
+		
+		UriBuilder path = uriInfo.getBaseUriBuilder().path(AuthenticationController.class);
+		link = new Links();
+		link.setLink(path.toString());
+		link.setRef("issueToken");
+		
+		exceptionLink= new ArrayList<>();
+		exceptionLink.add(link);
+		exception=new CustomException("Unauthorized - You dont have permission", 401,
+				"Your token is either invalid or expired ", exceptionLink);
+		return Response.status(Status.UNAUTHORIZED).entity(exception).build();
+	}
+
+	public static Response userNotFound(UriInfo uriInfo) {
+		exceptionLink= new ArrayList<>();
+		exceptionLink.add(HateoasUtils.getSelfDetails(uriInfo));
+		exception=new CustomException("Unauthorized - User not found", 404,
+				"User for the given credentials is not found ", exceptionLink);
+		return Response.status(Status.NOT_FOUND).entity(exception).build();
+	}
 }

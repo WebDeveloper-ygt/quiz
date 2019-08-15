@@ -21,6 +21,8 @@ public class ApiUtils {
 	}
 
 	public static Connection getDbConnection() throws SQLException, ClassNotFoundException {
+		
+ 
 		try {
 			Class.forName(DRIVER);
 			connection = DriverManager.getConnection(URL, USER, PASSWORD);

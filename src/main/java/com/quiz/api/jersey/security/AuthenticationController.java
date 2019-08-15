@@ -1,17 +1,18 @@
 package com.quiz.api.jersey.security;
 
-import java.security.Key;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.io.UnsupportedEncodingException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.ZonedDateTime;
+import java.util.Base64;
 import java.util.Date;
+import java.util.UUID;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriInfo;
@@ -19,50 +20,101 @@ import javax.ws.rs.core.UriInfo;
 import org.apache.log4j.Logger;
 
 import com.quiz.api.jersey.exception.ExceptionOccurred;
+import com.quiz.api.jersey.utils.ApiUtils;
+import com.quiz.api.jersey.utils.ConstantUtils;
+import com.quiz.api.jersey.utils.HateoasUtils;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.InvalidKeyException;
 
-@Path("identity")
-@Produces({MediaType.APPLICATION_JSON})
+@Path("/identity")
 public class AuthenticationController {
 
-	Logger LOG= Logger.getLogger(AuthenticationController.class);
+	Logger LOG = Logger.getLogger(AuthenticationController.class);
+	String role = "user";
+	TokenBean jwtToken;
+	TokenBean tokenBean;
+	Connection dbConnection;
+	@Context
+	UriInfo uriInfo;
 	
 	@POST
-	@Consumes({MediaType.APPLICATION_FORM_URLENCODED})
-	public Response authenticateUser(@FormParam("user") String user, @FormParam("password") String password) throws ExceptionOccurred {
-		try {
-			LOG.info("Creating TOKEN for user : " + user + " and password : "+ password);
-			if(user.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")) {
-				if(authenticateLoginUser(user, password)) {
-				
-				Token token = new Token();
-				token.setToken("still we are implementing");
-				token.setExpiresAt("");
-				return Response.status(Status.CREATED).entity(token).build();
-				}return Response.status(Status.UNAUTHORIZED).entity(new ExceptionOccurred()).build();
+	public Response createJwtusingJson(LoginCredentials logCreds) throws ExceptionOccurred {
 
-				
-			}else {
-				return Response.status(Status.UNAUTHORIZED).entity(new ExceptionOccurred()).build();		
+		try {
+			String email = logCreds.getEmailId();
+			String password = logCreds.getPassword();
+			if (email != null && password != null) {
+				Response jwtToken = authenticateUserCredentials(email, password);
+				//System.out.println(jwtToken.getAuthToken() + " == " + jwtToken);
+				if (jwtToken.getStatus() == 200) {
+					LOG.info("Generated token for -> " + logCreds.getEmailId() + " is  \n:: Bearer "+ jwtToken.getEntity());
+					return Response.status(Status.CREATED).entity(jwtToken.getEntity()).build();
+					
+				} else {
+					return HateoasUtils.userNotFound(uriInfo);
+				}
+			} else {
+				return HateoasUtils.unAuthorizedException(uriInfo);
 			}
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new ExceptionOccurred();
 		}
 		
-	}
-	
-	private boolean authenticateLoginUser(String user, String password) {
 
-		if(user.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")) {
-		
-			LOG.info("authenticated");
-			return true;
-		}else {
-			return false;
+	}
+
+	private TokenBean issueJWtToken(String username, String role2)
+			throws InvalidKeyException, UnsupportedEncodingException {
+
+		ZonedDateTime datetime = ZonedDateTime.now();
+		Date issuedDate = Date.from(datetime.toInstant());
+		Date expriesDate = Date.from(datetime.toInstant().plusSeconds(18000l));
+		// Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+		String token = Jwts.builder().setSubject(username)
+									 .setIssuer(uriInfo.getAbsolutePath().toString())
+									 .setId(UUID.randomUUID().toString())
+									 .setAudience(uriInfo.getAbsolutePath().toString())
+									 .setIssuedAt(issuedDate)
+									 .setExpiration(expriesDate).claim("name", username)
+									 .signWith(SignatureAlgorithm.HS256, ConstantUtils.SECRET.getBytes("UTF-8"))
+									 .compact();
+		tokenBean = new TokenBean();
+		tokenBean.setAuthToken(token);
+		tokenBean.setExpiresAt(expriesDate.toString());
+		return tokenBean;
+
+	}
+
+	private Response authenticateUserCredentials(String email, String password)
+			throws SQLException, ExceptionOccurred, NullPointerException {
+
+		String encode = Base64.getEncoder().encodeToString(password.getBytes());
+		System.out.println(encode);
+
+		try {
+			dbConnection = ApiUtils.getDbConnection();
+			// ConstantUtils.LOGIN
+			String query = "select * from quiz_users where emailId=? and password=?";
+			PreparedStatement pst = dbConnection.prepareStatement(query);
+			pst.setString(1, email);
+			pst.setString(2, encode);
+
+			ResultSet result = pst.executeQuery();
+
+			while (result.next()) {
+				jwtToken = issueJWtToken(result.getString(2), result.getString(8));
+				return Response.status(Status.OK).entity(jwtToken).build();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new ExceptionOccurred();
+		} finally {
+			dbConnection.close();
 		}
+		 return HateoasUtils.unAuthorizedException(uriInfo);
 		
 	}
 }

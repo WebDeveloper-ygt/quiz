@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import javax.ws.rs.core.Context;
@@ -62,7 +63,7 @@ public class UserDao implements UserService {
 					"User alreay present with Emailid " + user.getEmailId() + "", exceptionLink);
 		} else {
 			try {
-				String addUser = "INSERT INTO `quizapi`.`quiz_users`(`userName`,`firstName`,`lastName`,`emailId`,`phoneNumber`,`instituteName`)VALUES (?,?,?,?,?,?)";
+				String addUser = "INSERT INTO `quizapi`.`quiz_users`(`userName`,`firstName`,`lastName`,`emailId`,`phoneNumber`,`instituteName`,`password`)VALUES (?,?,?,?,?,?,?)";
 				PreparedStatement pst = ApiUtils.getDbConnection().prepareStatement(addUser);
 				pst.setString(1, user.getUserName());
 				pst.setString(2, user.getFirstName());
@@ -70,6 +71,7 @@ public class UserDao implements UserService {
 				pst.setString(4, user.getEmailId());
 				pst.setString(5, user.getPhoneNumber());
 				pst.setString(6, user.getInstituteName());
+				pst.setString(7, Base64.getEncoder().encodeToString(user.getPassword().getBytes()));
 
 				boolean execute = pst.execute();
 				if (execute == false) {

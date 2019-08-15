@@ -2,15 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="11793358-b91e-47ca-95db-dc758defd207" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__log4j_log4j_1_2_17.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_6_0_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/filters/AuthRequestFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/filters/Authenticate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QuizApi.iml" beforeDir="false" afterPath="$PROJECT_DIR$/QuizApi.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/dao/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/model/UserBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/model/UserBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/security/AuthRequestFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/security/Authenticate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/security/Authenticate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/security/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/security/AuthenticationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/security/KeyGenerator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/security/SimpleKeyGenerator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/security/Token.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/utils/ApiUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/utils/ApiUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/utils/ConstantUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/utils/ConstantUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/utils/HateoasUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/utils/HateoasUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/dao/QuestionsDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/dao/QuestionsDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/dao/UserDao$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/dao/UserDao$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/dao/UserDao$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/dao/UserDao$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/dao/UserDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/model/UserBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/model/UserBean.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/security/AuthRequestFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/security/AuthenticationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/security/AuthenticationController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/security/KeyGenerator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/security/SimpleKeyGenerator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/security/Token.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/utils/ApiUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/utils/ApiUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/utils/ConstantUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/utils/ConstantUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/utils/HateoasUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/utils/HateoasUtils.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/com.quiz.api.jersey/QuizApi/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/com.quiz.api.jersey/QuizApi/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/com.quiz.api.jersey/QuizApi/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/com.quiz.api.jersey/QuizApi/pom.xml" afterDir="false" />
     </list>
@@ -23,31 +39,28 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DefaultGradleProjectSettings">
-    <option name="testRunner" value="GRADLE" />
-    <option name="delegatedBuild" value="true" />
+    <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/filters/AuthRequestFilter.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/utils/ApiUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="10" column="13" lean-forward="true" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+            <state relative-caret-position="292">
+              <caret line="24" column="1" lean-forward="true" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#529#530#0" expanded="true" />
+                <element signature="e#583#584#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/filters/Authenticate.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/controller/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="112">
+              <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -92,8 +105,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -161,8 +174,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="jersey" type="462c0819:PsiDirectoryNode" />
-              <item name="exception" type="462c0819:PsiDirectoryNode" />
-              <item name="mappers" type="462c0819:PsiDirectoryNode" />
+              <item name="filters" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="QuizApi" type="b2602c69:ProjectViewProjectNode" />
@@ -171,7 +183,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="jersey" type="462c0819:PsiDirectoryNode" />
-              <item name="filters" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="QuizApi" type="b2602c69:ProjectViewProjectNode" />
@@ -223,7 +235,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25377643" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25755286" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -301,6 +313,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/filters/AuthRequestFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="10" column="13" lean-forward="true" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/filters/Authenticate.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
@@ -311,13 +333,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/filters/AuthRequestFilter.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/utils/ApiUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="10" column="13" lean-forward="true" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        <state relative-caret-position="292">
+          <caret line="24" column="1" lean-forward="true" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#529#530#0" expanded="true" />
+            <element signature="e#583#584#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
         </state>
       </provider>
     </entry>
