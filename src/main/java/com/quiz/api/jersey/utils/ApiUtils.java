@@ -8,11 +8,11 @@ import org.apache.log4j.Logger;
 
 public class ApiUtils {
 
-	static Logger LOG=Logger.getLogger(ApiUtils.class);
-	public static final String URL = "jdbc:mysql://localhost:3306/quizapi";
-	public static final String USER = "admin";
-	public static final String PASSWORD = "admin";
-	public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+	private static Logger LOG=Logger.getLogger(ApiUtils.class);
+	private static final String URL = "jdbc:mysql://localhost:3306/quizapi";
+	private static final String USER = "admin";
+	private static final String PASSWORD = "admin";
+	private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	
 	private static Connection connection;
 	
@@ -21,8 +21,7 @@ public class ApiUtils {
 	}
 
 	public static Connection getDbConnection() throws SQLException, ClassNotFoundException {
-		
- 
+
 		try {
 			Class.forName(DRIVER);
 			connection = DriverManager.getConnection(URL, USER, PASSWORD);

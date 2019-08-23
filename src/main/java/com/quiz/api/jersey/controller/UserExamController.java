@@ -23,16 +23,15 @@ import com.quiz.api.jersey.service.impl.ExamServiceImpl;
 import com.quiz.api.jersey.service.impl.UserServiceImpl;
 
 
-@Path("/")
 @Produces({ MediaType.APPLICATION_JSON })
 @Consumes({ MediaType.APPLICATION_JSON })
 public class UserExamController implements ExamService {
 
-	static Logger LOG = Logger.getLogger(UserController.class);
+	private static Logger LOG = Logger.getLogger(UserController.class);
 	private static UserServiceImpl userServiceImpl = new UserServiceImpl();
 	private static ExamServiceImpl examServiceImpl = new ExamServiceImpl();
 	
-	public UserExamController() {
+	UserExamController() {
 		LOG.info("Invoked " +this.getClass().getName());
 	}
 

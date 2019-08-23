@@ -1,34 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="11793358-b91e-47ca-95db-dc758defd207" name="Default Changelist" comment="">
+    <list default="true" id="11793358-b91e-47ca-95db-dc758defd207" name="Default Changelist" comment="Adding async response and some important specifications">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_dataformat_jackson_dataformat_yaml_2_9_8.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_findbugs_jsr305_3_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_errorprone_error_prone_annotations_2_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_failureaccess_1_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_27_0_1_android.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_listenablefuture_9999_0_empty_to_avoid_conflict_with_guava.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_j2objc_j2objc_annotations_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_swagger_core_v3_swagger_annotations_2_0_8.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_swagger_core_v3_swagger_models_2_0_8.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_swagger_swagger_annotations_1_5_22.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_swagger_swagger_core_1_5_22.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_swagger_swagger_jaxrs_1_5_16.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_swagger_swagger_jersey2_jaxrs_1_5_16.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_swagger_swagger_models_1_5_22.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_inject_javax_inject_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_2_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_checkerframework_checker_compat_qual_2_5_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_mojo_animal_sniffer_annotations_1_17.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_javax_json_1_0_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jersey_containers_jersey_container_servlet_core_2_27.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jersey_inject_jersey_hk2_2_27.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jersey_media_jersey_media_multipart_2_27.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jvnet_mimepull_mimepull_1_9_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_reflections_reflections_0_9_11.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_22.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_yaml_snakeyaml_1_23.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_9_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_9_8.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_annotation_javax_annotation_api_1_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_annotation_javax_annotation_api_1_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_validation_validation_api_1_1_0_Final.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_validation_validation_api_1_1_0_Final.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_ws_rs_javax_ws_rs_api_2_0_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_ws_rs_javax_ws_rs_api_2_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_persistence_org_eclipse_persistence_antlr_2_5_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_persistence_org_eclipse_persistence_asm_2_5_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_persistence_org_eclipse_persistence_asm_2_6_4.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_persistence_org_eclipse_persistence_core_2_5_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_persistence_org_eclipse_persistence_core_2_6_4.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_persistence_org_eclipse_persistence_moxy_2_5_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_persistence_org_eclipse_persistence_moxy_2_6_4.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_hk2_external_aopalliance_repackaged_2_4_0_b09.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_hk2_external_aopalliance_repackaged_2_5_0_b42.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_hk2_external_javax_inject_2_4_0_b09.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_hk2_external_javax_inject_2_5_0_b42.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_hk2_hk2_api_2_4_0_b09.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_hk2_hk2_api_2_5_0_b42.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_hk2_hk2_locator_2_4_0_b09.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_hk2_hk2_locator_2_5_0_b42.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_hk2_hk2_utils_2_4_0_b09.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_hk2_hk2_utils_2_5_0_b42.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_hk2_osgi_resource_locator_1_0_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_hk2_osgi_resource_locator_1_0_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jersey_bundles_repackaged_jersey_guava_2_16.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jersey_containers_jersey_container_servlet_core_2_16.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jersey_containers_jersey_container_servlet_2_27.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jersey_core_jersey_client_2_16.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jersey_core_jersey_client_2_27.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jersey_core_jersey_common_2_16.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jersey_core_jersey_common_2_27.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jersey_core_jersey_server_2_16.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jersey_core_jersey_server_2_27.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jersey_ext_jersey_entity_filtering_2_16.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jersey_ext_jersey_entity_filtering_2_27.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jersey_media_jersey_media_jaxb_2_16.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jersey_media_jersey_media_jaxb_2_27.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jersey_media_jersey_media_moxy_2_16.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jersey_media_jersey_media_moxy_2_27.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_javassist_javassist_3_18_1_GA.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_javassist_javassist_3_22_0_CR2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QuizApi.iml" beforeDir="false" afterPath="$PROJECT_DIR$/QuizApi.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/dao/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/model/UserBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/model/UserBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/security/AuthRequestFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/security/Authenticate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/security/Authenticate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/security/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/security/AuthenticationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/security/KeyGenerator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/security/SimpleKeyGenerator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/security/Token.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/QuizApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/QuizApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/controller/UserExamController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/controller/UserExamController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/service/impl/UserServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/utils/ApiUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/utils/ApiUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/utils/ConstantUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/utils/ConstantUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/utils/HateoasUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/utils/HateoasUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/log4j.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/MyResource.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/MyResource.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/QuizApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/QuizApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/controller/ExamQuestionsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/controller/ExamQuestionsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/controller/UserController$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/controller/UserExamController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/controller/UserExamController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/dao/ExamDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/dao/ExamDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/dao/QuestionsDao$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/dao/QuestionsDao$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/dao/QuestionsDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/dao/QuestionsDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/dao/UserDao$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/dao/UserDao$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/dao/UserDao$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/dao/UserDao$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/dao/UserDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/exception/CustomException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/exception/CustomException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/exception/ExceptionMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/exception/ExceptionMessage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/exception/ExceptionOccurred.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/exception/ExceptionOccurred.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/exception/mappers/ExceptionOccurredMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/exception/mappers/ExceptionOccurredMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/exception/mappers/UserExceptionMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/exception/mappers/UserExceptionMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/filters/CustomResponseFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/filters/CustomResponseFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/model/AttendeesBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/model/AttendeesBean.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/model/ExamBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/model/ExamBean.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/model/QuestionBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/model/QuestionBean.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/model/QuestionOptionBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/model/QuestionOptionBean.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/model/UserBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/model/UserBean.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/security/AuthRequestFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/security/Authenticate.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/security/Authenticate.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/security/AuthenticationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/security/AuthenticationController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/security/KeyGenerator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/security/SimpleKeyGenerator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/security/Token.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/security/AuthenticationFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/security/AuthenticationFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/security/LoginCredentials.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/security/LoginCredentials.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/security/TokenBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/security/TokenBean.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/service/ExamService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/service/ExamService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/service/QuestionsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/service/QuestionsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/service/impl/ExamServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/service/impl/ExamServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/service/impl/QuestionsServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/service/impl/QuestionsServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/service/impl/UserServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/utils/ApiUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/utils/ApiUtils.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/utils/ConstantUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/utils/ConstantUtils.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/utils/HateoasUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/utils/HateoasUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/com.quiz.api.jersey/QuizApi/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/com.quiz.api.jersey/QuizApi/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/com.quiz.api.jersey/QuizApi/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/com.quiz.api.jersey/QuizApi/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/utils/Links.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/quiz/api/jersey/utils/Links.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/quiz.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/quiz.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/quiz/WEB-INF/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/quiz/WEB-INF/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/quiz/WEB-INF/classes/com/quiz/api/jersey/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/quiz/WEB-INF/classes/com/quiz/api/jersey/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/quiz/WEB-INF/classes/com/quiz/api/jersey/dao/QuestionsDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/quiz/WEB-INF/classes/com/quiz/api/jersey/dao/QuestionsDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/quiz/WEB-INF/classes/com/quiz/api/jersey/dao/UserDao$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/quiz/WEB-INF/classes/com/quiz/api/jersey/dao/UserDao$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/quiz/WEB-INF/classes/com/quiz/api/jersey/dao/UserDao$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/quiz/WEB-INF/classes/com/quiz/api/jersey/dao/UserDao$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/quiz/WEB-INF/classes/com/quiz/api/jersey/dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/quiz/WEB-INF/classes/com/quiz/api/jersey/dao/UserDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/quiz/WEB-INF/classes/com/quiz/api/jersey/model/UserBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/quiz/WEB-INF/classes/com/quiz/api/jersey/model/UserBean.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/quiz/WEB-INF/classes/com/quiz/api/jersey/security/AuthenticationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/quiz/WEB-INF/classes/com/quiz/api/jersey/security/AuthenticationController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/quiz/WEB-INF/classes/com/quiz/api/jersey/security/AuthenticationFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/quiz/WEB-INF/classes/com/quiz/api/jersey/security/AuthenticationFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/quiz/WEB-INF/classes/com/quiz/api/jersey/security/LoginCredentials.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/quiz/WEB-INF/classes/com/quiz/api/jersey/security/LoginCredentials.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/quiz/WEB-INF/classes/com/quiz/api/jersey/utils/ApiUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/quiz/WEB-INF/classes/com/quiz/api/jersey/utils/ApiUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/quiz/WEB-INF/classes/com/quiz/api/jersey/utils/ConstantUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/quiz/WEB-INF/classes/com/quiz/api/jersey/utils/ConstantUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/quiz/WEB-INF/classes/com/quiz/api/jersey/utils/HateoasUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/quiz/WEB-INF/classes/com/quiz/api/jersey/utils/HateoasUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/quiz/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/quiz/WEB-INF/web.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -44,10 +129,31 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1504">
+              <caret line="94" column="19" selection-start-line="94" selection-start-column="19" selection-end-line="94" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/controller/UserController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="106">
+              <caret line="155" column="81" selection-start-line="155" selection-start-column="39" selection-end-line="155" selection-end-column="81" />
+              <folding>
+                <element signature="e#6518#6519#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/utils/ApiUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="24" column="1" lean-forward="true" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
+            <state relative-caret-position="232">
+              <caret line="29" column="32" lean-forward="true" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
               <folding>
                 <element signature="e#529#530#0" expanded="true" />
                 <element signature="e#583#584#0" expanded="true" />
@@ -56,11 +162,33 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/controller/UserController.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/service/impl/UserServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
+            <state relative-caret-position="256">
+              <caret line="35" column="22" lean-forward="true" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/controller/UserExamController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="33" column="4" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="4" />
+              <folding>
+                <element signature="e#1120#1121#0" expanded="true" />
+                <element signature="e#1174#1175#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/QuizApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="27" column="53" selection-start-line="27" selection-start-column="53" selection-end-line="27" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -81,9 +209,15 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/filters/AuthRequestFilter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/filters/Authenticate.java" />
+        <option value="$PROJECT_DIR$/src/main/java/log4j.properties" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/utils/ApiUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/service/impl/UserServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/QuizApplication.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/controller/UserExamController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/controller/UserController.java" />
       </list>
     </option>
   </component>
@@ -94,113 +228,41 @@
       </MavenImportingSettings>
     </option>
   </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="quiz" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="quiz" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="10" />
-    <option name="y" value="20" />
-    <option name="width" value="1346" />
-    <option name="height" value="688" />
+    <option name="x" value="-7" />
+    <option name="width" value="697" />
+    <option name="height" value="735" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="QuizApi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="QuizApi" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="QuizApi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="QuizApi" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="QuizApi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="QuizApi" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="QuizApi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="QuizApi" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="QuizApi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="QuizApi" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="jersey" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="QuizApi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="QuizApi" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="jersey" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="QuizApi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="QuizApi" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="jersey" type="462c0819:PsiDirectoryNode" />
-              <item name="dao" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="QuizApi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="QuizApi" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="jersey" type="462c0819:PsiDirectoryNode" />
-              <item name="exception" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="QuizApi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="QuizApi" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="jersey" type="462c0819:PsiDirectoryNode" />
-              <item name="filters" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="QuizApi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="QuizApi" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="jersey" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="QuizApi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="QuizApi" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.idea" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.poratu.idea.plugins.tomcat.setting.TomcatSettingConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -219,6 +281,89 @@
       </list>
     </option>
   </component>
+  <component name="RunManager" selected="Maven.Tomcat">
+    <configuration name="Tomcat redeploy" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="tomcat7:redeploy" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="Tomcat" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings">
+          <MavenRunnerSettings>
+            <option name="delegateBuildToMaven" value="false" />
+            <option name="environmentProperties">
+              <map />
+            </option>
+            <option name="jreName" value="#USE_PROJECT_JDK" />
+            <option name="mavenProperties">
+              <map />
+            </option>
+            <option name="passParentEnv" value="true" />
+            <option name="runMavenInBackground" value="true" />
+            <option name="skipTests" value="false" />
+            <option name="vmOptions" value="-XX:MaxPermSize=256m -Xms128m -Xmx512m -Djava.awt.headless==true" />
+          </MavenRunnerSettings>
+        </option>
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="tomcat7:run" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="com.poratu.idea.plugins.tomcat" factoryName="SMART_TOMCAT_FACTORY" editBeforeRun="true">
+      <option name="DOC_BASE" value="G:\Web-Sites\QuizApi\" />
+      <option name="CONTEXT_PATH" value="/quiz" />
+      <option name="TOMCAT_PORT" value="1993" />
+      <option name="AJP_PORT" value="8009" />
+      <option name="ADMIN_PORT" value="8005" />
+      <option name="VM_OPTIONS" value="" />
+      <option name="PASS_PARENT_ENV_OPTIONS" value="true" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Maven.Tomcat" />
+      <item itemvalue="Maven.Tomcat redeploy" />
+    </list>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -234,8 +379,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25755286" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2688822" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -244,37 +390,34 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32899022" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49924472" weight="0.32899022" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32899022" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5007553" side_tool="true" weight="0.32899022" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Messages" order="10" />
+      <window_info active="true" anchor="bottom" id="Messages" order="10" visible="true" weight="0.32899022" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Maven" order="4" />
+      <window_info anchor="right" id="Maven" order="4" weight="0.32930514" />
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
     </layout>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Adding async response and some important specifications" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding async response and some important specifications" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$MAVEN_REPOSITORY$/org/glassfish/jersey/jersey-bom/2.16/jersey-bom-2.16.pom">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="138" column="12" selection-start-line="138" selection-start-column="12" selection-end-line="138" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="35" column="21" lean-forward="true" selection-start-line="35" selection-start-column="21" selection-end-line="35" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -313,30 +456,81 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/filters/AuthRequestFilter.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/filters/AuthRequestFilter.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/filters/Authenticate.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/log4j.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="11" column="38" lean-forward="true" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/target/tomcat/conf/tomcat-users.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="20" column="26" lean-forward="true" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/target/tomcat/conf/logging.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/target/tomcat/logs/access_log.2019-08-17">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/target/tomcat/logs/access_log.2019-08-16">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/lang/Runnable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="67" column="25" selection-start-line="67" selection-start-column="25" selection-end-line="67" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/util/concurrent/Executor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="141" lean-forward="true" selection-start-line="141" selection-end-line="141" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/glassfish/jersey/core/jersey-server/2.27/jersey-server-2.27.jar!/org/glassfish/jersey/server/ManagedAsync.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
-          <caret line="10" column="13" lean-forward="true" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <caret line="10" column="44" lean-forward="true" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#0#459#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/filters/Authenticate.java">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="1504">
+          <caret line="94" column="19" selection-start-line="94" selection-start-column="19" selection-end-line="94" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/util/function/Supplier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="47" column="6" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/utils/ApiUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="24" column="1" lean-forward="true" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
+        <state relative-caret-position="232">
+          <caret line="29" column="32" lean-forward="true" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
           <folding>
             <element signature="e#529#530#0" expanded="true" />
             <element signature="e#583#584#0" expanded="true" />
@@ -344,10 +538,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/service/impl/UserServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="35" column="22" lean-forward="true" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/QuizApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="27" column="53" selection-start-line="27" selection-start-column="53" selection-end-line="27" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/controller/UserExamController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="33" column="4" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="4" />
+          <folding>
+            <element signature="e#1120#1121#0" expanded="true" />
+            <element signature="e#1174#1175#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/quiz/api/jersey/controller/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
+        <state relative-caret-position="106">
+          <caret line="155" column="81" selection-start-line="155" selection-start-column="39" selection-end-line="155" selection-end-column="81" />
+          <folding>
+            <element signature="e#6518#6519#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
