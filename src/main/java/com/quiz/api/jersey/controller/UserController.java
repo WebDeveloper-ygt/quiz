@@ -24,6 +24,7 @@ import com.quiz.api.jersey.exception.CustomException;
 import com.quiz.api.jersey.model.UserBean;
 import com.quiz.api.jersey.security.Authenticate;
 import com.quiz.api.jersey.service.impl.UserServiceImpl;
+import com.quiz.api.jersey.utils.ThreadExecutor;
 
 import java.util.concurrent.*;
 
@@ -37,14 +38,14 @@ public class UserController{
 
 	private static final Logger LOG = Logger.getLogger(UserController.class);
 	private static final UserServiceImpl userServiceImpl = new UserServiceImpl();
-	private final ExecutorService executorService = Executors.newSingleThreadExecutor();
+	private static final ExecutorService executorService = ThreadExecutor.getExecutor();
+	
 	public UserController() {
 		LOG.info("Invoked " +this.getClass().getName());
 	}
 
 	@GET
 	@Authenticate
-    //@ManagedAsync
 	public void  getAllUsers(@Context UriInfo uriInfo, @Suspended AsyncResponse asyncResponse) {
 
     CompletableFuture.supplyAsync(()->{
@@ -59,37 +60,61 @@ public class UserController{
 
     }
 
-    public static Response getusers(){
-		Response allusers = null;
-		try {
-			UriInfo uriInfo = null;
-			allusers= UserServiceImpl.getAllUsers(uriInfo);
-		} catch (ExceptionOccurred | CustomException exception) {
-			exception.printStackTrace();
-		}
-		return allusers;
-	}
 	@GET
 	@Path("{userId : [0-9]*}")
-	public Response getUser(@PathParam("userId") int userId,@Context UriInfo uriInfo ) throws ExceptionOccurred, CustomException {
-        return userServiceImpl.getUser(userId,uriInfo);
+	public void getUser(@PathParam("userId") int userId,@Context UriInfo uriInfo, @Suspended AsyncResponse asyncResponse ) throws ExceptionOccurred, CustomException {
+		
+		CompletableFuture.supplyAsync(()->{
+			Response user = null;
+			try {
+				user = userServiceImpl.getUser(userId, uriInfo);
+			} catch (ExceptionOccurred | CustomException exception) {
+				exception.printStackTrace();
+			}
+			return user;
+		},executorService).thenAccept(response -> asyncResponse.resume(response));
+
 	}
 
 	@POST
-	public Response addUser(UserBean user, @Context UriInfo uriInfo) throws ExceptionOccurred, CustomException {
-        return userServiceImpl.addUser(user,uriInfo);
+	public void addUser(UserBean user, @Context UriInfo uriInfo, @Suspended AsyncResponse asyncResponse) throws ExceptionOccurred, CustomException {
+		CompletableFuture.supplyAsync(()->{
+			Response addUser = null;
+			try {
+				addUser = userServiceImpl.addUser(user, uriInfo)
+			} catch (ExceptionOccurred | CustomException exception) {
+				exception.printStackTrace();
+			}
+			return addUser;
+		},executorService).thenAccept(response -> asyncResponse.resume(response));
 	}
 
 	@PUT
 	@Path("{userId}")
-	public Response updateUser(UserBean user, @PathParam("userId") int userId,@Context UriInfo uriInfo) throws ExceptionOccurred, CustomException{
-        return userServiceImpl.updateUser(user,userId,uriInfo);
+	public void updateUser(UserBean user, @PathParam("userId") int userId,@Context UriInfo uriInfo, @Suspended AsyncResponse asyncResponse) throws ExceptionOccurred, CustomException{
+		CompletableFuture.supplyAsync(()->{
+			Response updateUser = null;
+			try {
+				updateUser = userServiceImpl.updateUser(user,userId,uriInfo);
+			} catch (ExceptionOccurred | CustomException exception) {
+				exception.printStackTrace();
+			}
+			return updateUser;
+		},executorService).thenAccept(response -> asyncResponse.resume(response));
 	}
 
 	@DELETE
 	@Path("{userId}")
-	public Response deleteUser(@PathParam("userId") int userId,@Context UriInfo uriInfo) throws ExceptionOccurred, CustomException {
-        return userServiceImpl.deleteUser(userId,uriInfo);
+	public void deleteUser(@PathParam("userId") int userId,@Context UriInfo uriInfo, @Suspended AsyncResponse asyncResponse) throws ExceptionOccurred, CustomException {
+		CompletableFuture.supplyAsync(()->{
+			Response deleteUser = null;
+			try {
+				deleteUser = userServiceImpl.deleteUser(userId,uriInfo);
+			} catch (ExceptionOccurred | CustomException exception) {
+				exception.printStackTrace();
+			}
+			return deleteUser;
+		},executorService).thenAccept(response -> asyncResponse.resume(response)); 
 	}
 
 

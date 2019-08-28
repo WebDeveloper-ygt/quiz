@@ -1,5 +1,8 @@
 package com.quiz.api.jersey.controller;
 
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -8,6 +11,8 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.container.AsyncResponse;
+import javax.ws.rs.container.Suspended;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -15,30 +20,41 @@ import javax.ws.rs.core.UriInfo;
 
 import org.apache.log4j.Logger;
 
+import com.google.common.util.concurrent.ExecutionError;
 import com.quiz.api.jersey.exception.CustomException;
 import com.quiz.api.jersey.exception.ExceptionOccurred;
 import com.quiz.api.jersey.model.ExamBean;
 import com.quiz.api.jersey.service.ExamService;
 import com.quiz.api.jersey.service.impl.ExamServiceImpl;
 import com.quiz.api.jersey.service.impl.UserServiceImpl;
+import com.quiz.api.jersey.utils.ThreadExecutor;
 
 
 @Produces({ MediaType.APPLICATION_JSON })
 @Consumes({ MediaType.APPLICATION_JSON })
-public class UserExamController implements ExamService {
+public class UserExamController{
 
 	private static final Logger LOG = Logger.getLogger(UserController.class);
 	private static final UserServiceImpl userServiceImpl = new UserServiceImpl();
 	private static final ExamServiceImpl examServiceImpl = new ExamServiceImpl();
-	
+	private static final ExecutorService executorService = ThreadExecutor.getExecutor();
+
 	UserExamController() {
 		LOG.info("Invoked " +this.getClass().getName());
 	}
 
 	@GET
-	public Response getExamsByExamAndUserId(@Context UriInfo uriInfo, @PathParam("userId") int userId)
+	public void getExamsByExamAndUserId(@Context UriInfo uriInfo, @PathParam("userId") int userId, @Suspended AsyncResponse asyncResponse)
 			throws ExceptionOccurred, CustomException {
-        return userServiceImpl.getExamsByExamAndUserId(uriInfo, userId);
+		CompletableFuture.supplyAsync(()->{
+			Response examId =null;
+			try {
+				examId=userServiceImpl.getExamsByExamAndUserId(uriInfo, userId);
+			} catch (ExceptionOccurred | CustomException exception) {
+				exception.printStackTrace();
+			}
+			return examId;
+		},executorService).thenAccept(response -> asyncResponse.resume(response));		
 	}
 
 	@GET

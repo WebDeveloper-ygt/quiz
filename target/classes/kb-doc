@@ -93,6 +93,26 @@
         */
 
 
+public static Response getusers(){
+		Response allusers = null;
+		try {
+			UriInfo uriInfo = null;
+			allusers= UserServiceImpl.getAllUsers(uriInfo);
+		} catch (ExceptionOccurred | CustomException exception) {
+			exception.printStackTrace();
+		}
+		return allusers;
+	}
 
+CompletableFuture.supplyAsync(()->{
+       		Response allusers = null;
+		   try {
+			   allusers = UserServiceImpl.getAllUsers(uriInfo);
+		   } catch (ExceptionOccurred | CustomException exception) {
+			   exception.printStackTrace();
+		   }
+		   return allusers;
+	   }, executorService ).thenAccept(response -> asyncResponse.resume(response));
 
+    }
         

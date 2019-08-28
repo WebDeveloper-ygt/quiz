@@ -1,8 +1,0 @@
-0:0:0:0:0:0:0:1 - - [16/Aug/2019:21:25:53 +0530] "POST /QuizApi/api/identity HTTP/1.1" 201 424 http-bio-8080-exec-1 6231
-0:0:0:0:0:0:0:1 - - [16/Aug/2019:21:27:18 +0530] "GET /QuizApi/api/users HTTP/1.1" 200 524 http-bio-8080-exec-4 2015
-0:0:0:0:0:0:0:1 - - [16/Aug/2019:21:28:35 +0530] "GET /QuizApi/api/users HTTP/1.1" 200 524 http-bio-8080-exec-7 57
-0:0:0:0:0:0:0:1 - - [16/Aug/2019:21:29:21 +0530] "GET /QuizApi/api/users HTTP/1.1" 200 524 http-bio-8080-exec-2 1878
-0:0:0:0:0:0:0:1 - - [16/Aug/2019:21:29:38 +0530] "GET /QuizApi/api/users HTTP/1.1" 200 524 http-bio-8080-exec-5 20
-0:0:0:0:0:0:0:1 - - [16/Aug/2019:21:31:29 +0530] "GET /QuizApi/api/users HTTP/1.1" 200 524 http-bio-8080-exec-2 1774
-127.0.0.1 - - [16/Aug/2019:23:12:25 +0530] "PUT /manager/text/deploy?path=%2FQuizApi&update=true HTTP/1.1" 404 - http-bio-8080-exec-1 0
-0:0:0:0:0:0:0:1 - - [16/Aug/2019:23:16:53 +0530] "GET /QuizApi/api/users HTTP/1.1" 200 524 http-bio-8080-exec-2 3429
