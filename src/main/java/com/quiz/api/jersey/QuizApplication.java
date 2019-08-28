@@ -1,6 +1,7 @@
 package com.quiz.api.jersey;
 
 import io.swagger.jaxrs.config.BeanConfig;
+import org.glassfish.jersey.server.ResourceConfig;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -13,7 +14,7 @@ import javax.ws.rs.core.Application;
 @ApplicationPath("/api")
 public class QuizApplication extends Application {
 
-	public QuizApplication() {
+	/*public QuizApplication() {
 		BeanConfig beanConfig = new BeanConfig();
 		beanConfig.setVersion("1.0.2");
 		beanConfig.setSchemes(new String[]{"http"});
@@ -22,7 +23,7 @@ public class QuizApplication extends Application {
 		beanConfig.setResourcePackage("com.quiz.api.jersey");
 		beanConfig.setScan(true);
 	}
-
+*/
 	@Override
 	public Map<String, Object> getProperties() {
 		 Map<String, Object> properties= new HashMap<>();
@@ -30,7 +31,7 @@ public class QuizApplication extends Application {
 		return properties;
 	}
 
-	@Override
+	/*@Override
 	public Set<Class<?>> getClasses() {
 
 		Set<Class<?>> resources = new HashSet<>();
@@ -38,6 +39,5 @@ public class QuizApplication extends Application {
 		resources.add(io.swagger.jaxrs.listing.ApiListingResource.class);
 		resources.add(io.swagger.jaxrs.listing.SwaggerSerializers.class);
 		return resources;
-	}
-
+	}*/
 }

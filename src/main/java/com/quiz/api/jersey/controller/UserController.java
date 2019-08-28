@@ -1,5 +1,8 @@
 package com.quiz.api.jersey.controller;
 
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -15,23 +18,22 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.Authorization;
-import org.apache.log4j.Logger;
-
-import com.quiz.api.jersey.exception.ExceptionOccurred;
 import com.quiz.api.jersey.exception.CustomException;
+import com.quiz.api.jersey.exception.ExceptionOccurred;
 import com.quiz.api.jersey.model.UserBean;
 import com.quiz.api.jersey.security.Authenticate;
 import com.quiz.api.jersey.service.impl.UserServiceImpl;
 import com.quiz.api.jersey.utils.ThreadExecutor;
 
-import java.util.concurrent.*;
+import org.apache.log4j.Logger;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.Authorization;
 
 @Path("/users")
-@Api(value = "UserController", authorizations = {
+/*@Api(value = "UserController", authorizations = {
         @Authorization(value = "JWT-tokens", scopes = {})
-})
+})*/
 @Produces({ MediaType.APPLICATION_JSON })
 @Consumes({ MediaType.APPLICATION_JSON })
 public class UserController{
@@ -51,7 +53,7 @@ public class UserController{
     CompletableFuture.supplyAsync(()->{
        		Response allusers = null;
 		   try {
-			   allusers = UserServiceImpl.getAllUsers(uriInfo);
+			   allusers = userServiceImpl.getAllUsers(uriInfo);
 		   } catch (ExceptionOccurred | CustomException exception) {
 			   exception.printStackTrace();
 		   }
@@ -81,7 +83,7 @@ public class UserController{
 		CompletableFuture.supplyAsync(()->{
 			Response addUser = null;
 			try {
-				addUser = userServiceImpl.addUser(user, uriInfo)
+				addUser = userServiceImpl.addUser(user, uriInfo);
 			} catch (ExceptionOccurred | CustomException exception) {
 				exception.printStackTrace();
 			}
