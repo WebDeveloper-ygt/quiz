@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.ws.rs.core.Response;
@@ -25,8 +24,8 @@ import com.quiz.api.jersey.utils.Links;
 
 public class ExamDao implements ExamService {
 
-	Logger LOG = Logger.getLogger(ExamDao.class);
-	private static UserDao userDao = new UserDao();
+	private final Logger LOG = Logger.getLogger(ExamDao.class);
+	private static final UserDao userDao = new UserDao();
 	private static Connection dbConnection;
 	private static List<Links> examLinks = new ArrayList<>();
 
@@ -35,7 +34,7 @@ public class ExamDao implements ExamService {
 	}
 
 	@Override
-	public Response addExams(UriInfo uriInfo, ExamBean examBean, int userId) throws ExceptionOccurred, CustomException {
+	public Response addExams(UriInfo uriInfo, ExamBean examBean, int userId) throws ExceptionOccurred {
 		try {
 			dbConnection = ApiUtils.getDbConnection();
 			String addExams = "INSERT INTO `quiz_exams`(`examName`,`examDuration`,`negativeMarks`,`numberOfQuestions`,`userId`)VALUES(?,?,?,?,?)";
@@ -52,8 +51,7 @@ public class ExamDao implements ExamService {
 				ResultSet generatedKeys = pst.getGeneratedKeys();
 				while (generatedKeys.next()) {
 					int genId = generatedKeys.getInt(1);
-					Response examsByExamId = userDao.getCommonExams(uriInfo, userId, genId);
-					return examsByExamId;
+					return userDao.getCommonExams(uriInfo, userId, genId);
 				}
 			} else {
 				Links selfDetails = HateoasUtils.getSelfDetails(uriInfo);
@@ -75,7 +73,7 @@ public class ExamDao implements ExamService {
 
 	@Override
 	public Response updateExams(UriInfo uriInfo, ExamBean examBean, int userId, int examId)
-			throws ExceptionOccurred, CustomException {
+			throws ExceptionOccurred {
 		Response commonExams = userDao.getCommonExams(uriInfo, userId, examId);
 		if (commonExams.getStatus() != 200) {
 			examLinks = new ArrayList<>();
@@ -83,6 +81,7 @@ public class ExamDao implements ExamService {
 			return Response.status(Status.NOT_FOUND).entity(new CustomException("Exam Not Found", 404,
 					"Exam for the ExamID " + examId + " Not Found", examLinks)).build();
 		} else {
+			//noinspection unchecked
 			List<ExamBean> entity = (List<ExamBean>) commonExams.getEntity();
 			for (ExamBean exbean : entity) {
 				String examName = (examBean.getExamName() == null || examBean.getExamName().equalsIgnoreCase(""))
@@ -127,7 +126,7 @@ public class ExamDao implements ExamService {
 	}
 
 	@Override
-	public Response deleteExams(UriInfo uriInfo, int userId, int examId) throws ExceptionOccurred, CustomException {
+	public Response deleteExams(UriInfo uriInfo, int userId, int examId) throws ExceptionOccurred {
 		Response commonExams = userDao.getCommonExams(uriInfo, userId, examId);
 		if (commonExams.getStatus() != 200) {
 			examLinks = new ArrayList<>();

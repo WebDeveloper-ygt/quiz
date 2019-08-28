@@ -3,12 +3,13 @@ package com.quiz.api.jersey.model;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "attendee")
-public class AttendeesBean extends UserBean{
+class AttendeesBean extends UserBean{
     private int attendeeScore;
     private String attendeeResult;
 
+
     public AttendeesBean() {
-    	super();
+      	super();
     }
 
     public int getAttendeeScore() {
@@ -17,10 +18,6 @@ public class AttendeesBean extends UserBean{
 
     public void setAttendeeScore(int attendeeScore) {
         this.attendeeScore = attendeeScore;
-    }
-
-    public String getAttendeeResult() {
-        return attendeeResult;
     }
 
     public void setAttendeeResult(String attendeeResult) {

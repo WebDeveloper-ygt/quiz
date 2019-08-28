@@ -27,9 +27,9 @@ import com.quiz.api.jersey.service.impl.UserServiceImpl;
 @Consumes({ MediaType.APPLICATION_JSON })
 public class UserExamController implements ExamService {
 
-	private static Logger LOG = Logger.getLogger(UserController.class);
-	private static UserServiceImpl userServiceImpl = new UserServiceImpl();
-	private static ExamServiceImpl examServiceImpl = new ExamServiceImpl();
+	private static final Logger LOG = Logger.getLogger(UserController.class);
+	private static final UserServiceImpl userServiceImpl = new UserServiceImpl();
+	private static final ExamServiceImpl examServiceImpl = new ExamServiceImpl();
 	
 	UserExamController() {
 		LOG.info("Invoked " +this.getClass().getName());
@@ -38,39 +38,34 @@ public class UserExamController implements ExamService {
 	@GET
 	public Response getExamsByExamAndUserId(@Context UriInfo uriInfo, @PathParam("userId") int userId)
 			throws ExceptionOccurred, CustomException {
-		Response examsByExamAndUserId = userServiceImpl.getExamsByExamAndUserId(uriInfo, userId);
-		return examsByExamAndUserId;
+        return userServiceImpl.getExamsByExamAndUserId(uriInfo, userId);
 	}
 
 	@GET
 	@Path("{examId}")
 	public Response getExamsByExamId(@Context UriInfo uriInfo, @PathParam("userId") int userId,
 			@PathParam("examId") int examId) throws ExceptionOccurred, CustomException {
-		Response examsByExamAndUserId = userServiceImpl.getExamsByExamId(uriInfo, userId, examId);
-		return examsByExamAndUserId;
+        return userServiceImpl.getExamsByExamId(uriInfo, userId, examId);
 	}
 
 	@POST
 	public Response addExams(@Context UriInfo uriInfo, ExamBean examBean,@PathParam("userId") int userId)
 			throws ExceptionOccurred, CustomException {
-		Response addExams = examServiceImpl.addExams(uriInfo, examBean, userId);
-		return addExams;
+        return examServiceImpl.addExams(uriInfo, examBean, userId);
 	}
 
 	@PUT
 	@Path("{examId}")
 	public Response updateExams(@Context UriInfo uriInfo, ExamBean examBean, @PathParam("userId") int userId,
 			@PathParam("examId") int examId) throws ExceptionOccurred, CustomException {
-		Response updateExams = examServiceImpl.updateExams(uriInfo, examBean, userId, examId);
-		return updateExams;
+        return examServiceImpl.updateExams(uriInfo, examBean, userId, examId);
 	}
 
 	@DELETE
 	@Path("{examId}")
 	public Response deleteExams(UriInfo uriInfo, @PathParam("userId") int userId,
 			@PathParam("examId") int examId) throws ExceptionOccurred, CustomException {
-		Response deleteExams = examServiceImpl.deleteExams(uriInfo, userId, examId);
-		return deleteExams;
+        return examServiceImpl.deleteExams(uriInfo, userId, examId);
 	}
 	
 	@Path("{examId}/questions")

@@ -27,28 +27,27 @@ import com.quiz.api.jersey.utils.Links;
 
 public class QuestionsDao implements QuestionsService{
 
-	static Logger LOG = Logger.getLogger(QuestionsServiceImpl.class);
+	private static final Logger LOG = Logger.getLogger(QuestionsServiceImpl.class);
 	private static ExamDao examDao = new ExamDao();
 	private static UserDao userDao = new UserDao();
 	private static Connection dbConnection;
-	private static List<Links> exceptionLink;
 	private static List<QuestionBean> questionList;
 	public QuestionsDao() {
 		LOG.info("Invoked " + this.getClass().getName());
 	}
 	
 	@Override
-	public Response getAllQuestionsByExamId(UriInfo uriInfo, int examId,int userId) throws ExceptionOccurred, CustomException {
-		return getQuestionInCommon(uriInfo, examId, 0, userId);
+	public Response getAllQuestionsByExamId(UriInfo uriInfo, int examId,int userId) throws ExceptionOccurred {
+		return getQuestionInCommon(uriInfo, examId, 0);
 	}
 
 	@Override
 	public Response getQuestionsByQuestionId(UriInfo uriInfo, int examId, int questionId,int userId)
-			throws ExceptionOccurred, CustomException {
-		return getQuestionInCommon(uriInfo, examId, questionId, userId);
+			throws ExceptionOccurred {
+		return getQuestionInCommon(uriInfo, examId, questionId);
 	}
 
-	public Response getQuestionInCommon(UriInfo uriInfo, int examId, int questionId, int userId) throws ExceptionOccurred {
+	private Response getQuestionInCommon(UriInfo uriInfo, int examId, int questionId) throws ExceptionOccurred {
 		
 		questionList= new ArrayList<>();
 		PreparedStatement pst;
@@ -80,7 +79,7 @@ public class QuestionsDao implements QuestionsService{
 		if (questionList.size() >= 1) {
 			return Response.status(Status.OK).entity(new GenericEntity<List<QuestionBean>>(questionList) {}).build();
 		} else {
-			exceptionLink = new ArrayList<>();
+			List<Links> exceptionLink = new ArrayList<>();
 			exceptionLink.add(HateoasUtils.getSelfDetails(uriInfo));
 			return Response.status(Status.NOT_FOUND).entity(
 					new CustomException("Questions Not Found", 404, "Question for exam-id " +examId + " not found", exceptionLink))
@@ -88,7 +87,7 @@ public class QuestionsDao implements QuestionsService{
 		}
 	}
 	@Override
-	public Response addQuestionsByExamId(UriInfo uriInfo, int examId,int userId,QuestionBean questionBean) throws ExceptionOccurred, CustomException {
+	public Response addQuestionsByExamId(UriInfo uriInfo, int examId,int userId,QuestionBean questionBean) throws ExceptionOccurred {
 	 
 		QuestionOptionBean options = questionBean.getOptions();
 		try {
@@ -104,9 +103,9 @@ public class QuestionsDao implements QuestionsService{
 			ResultSet generatedKeys = pst.getGeneratedKeys();
 			while (generatedKeys.next()) {
 				int genId = generatedKeys.getInt(1);
-				Response examsByExamId = createQuestionOption(uriInfo,options,genId);
+				Response examsByExamId = createQuestionOption(options,genId);
 				if(examsByExamId.getStatus() == 200) {
-					return getQuestionInCommon(uriInfo, examId, genId, userId);
+					return getQuestionInCommon(uriInfo, examId, genId);
 				}else {
 					
 				}
@@ -120,7 +119,7 @@ public class QuestionsDao implements QuestionsService{
 		}
 	}
 
-	private Response createQuestionOption(UriInfo uriInfo, QuestionOptionBean options, int genId) throws ExceptionOccurred {
+	private Response createQuestionOption(QuestionOptionBean options, int genId) throws ExceptionOccurred {
 		try {
 			dbConnection = ApiUtils.getDbConnection();
 			String addOptions = "INSERT INTO `quizapi`.`question_options`(`optionA`,`optionB`,`optionC`,`optionD`,`optionCorrect`)VALUES (?,?,?,?,?)";
@@ -152,20 +151,18 @@ public class QuestionsDao implements QuestionsService{
 	}
 
 	@Override
-	public Response updateQuestionsByQuestionId(UriInfo uriInfo, int examId, int questionId,int userId,QuestionBean questionBean)
-			throws ExceptionOccurred, CustomException {
+	public Response updateQuestionsByQuestionId(UriInfo uriInfo, int examId, int questionId,int userId,QuestionBean questionBean) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Response deleteQuestionsByQuestionId(UriInfo uriInfo, int examId, int questionId,int userId)
-			throws ExceptionOccurred, CustomException {
+	public Response deleteQuestionsByQuestionId(UriInfo uriInfo, int examId, int questionId,int userId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public QuestionOptionBean getQuestionOptions(int questionId) throws ExceptionOccurred {
+	private QuestionOptionBean getQuestionOptions(int questionId) throws ExceptionOccurred {
 		try {
 			dbConnection = ApiUtils.getDbConnection();
 			PreparedStatement pst = dbConnection.prepareStatement(ConstantUtils.QUSETION_OPTIONS+questionId);

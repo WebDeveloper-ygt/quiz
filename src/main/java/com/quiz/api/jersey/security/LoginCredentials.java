@@ -1,13 +1,13 @@
 package com.quiz.api.jersey.security;
 
-public class LoginCredentials {
+class LoginCredentials {
 
 	private String emailId;
 	private String password;
 	public LoginCredentials() {
-	
+
 	}
-	
+
 	public String getEmailId() {
 		return emailId;
 	}

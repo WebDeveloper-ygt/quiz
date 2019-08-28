@@ -39,4 +39,5 @@ public class QuizApplication extends Application {
 		resources.add(io.swagger.jaxrs.listing.SwaggerSerializers.class);
 		return resources;
 	}
+
 }

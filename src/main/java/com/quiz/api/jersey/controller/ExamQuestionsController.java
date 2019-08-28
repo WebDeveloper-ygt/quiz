@@ -25,8 +25,8 @@ import com.quiz.api.jersey.service.impl.QuestionsServiceImpl;
 @Consumes({ MediaType.APPLICATION_JSON })
 public class ExamQuestionsController implements QuestionsService {
 
-	static Logger LOG = Logger.getLogger(ExamQuestionsController.class);
-	private static QuestionsServiceImpl quesrtionsImpl = new QuestionsServiceImpl();
+	private static final Logger LOG = Logger.getLogger(ExamQuestionsController.class);
+	private static final QuestionsServiceImpl quesrtionsImpl = new QuestionsServiceImpl();
 
 	public ExamQuestionsController() {
 		LOG.info("Invoked " + this.getClass().getName());
@@ -36,24 +36,21 @@ public class ExamQuestionsController implements QuestionsService {
 	public Response getAllQuestionsByExamId(@Context UriInfo uriInfo, @PathParam("examId") int examId,
 			@PathParam("userId") int userId) throws ExceptionOccurred, CustomException {
 		// TODO Auto-generated method stub
-		Response allQuestionsByExamId = quesrtionsImpl.getAllQuestionsByExamId(uriInfo, examId,userId);
-		return allQuestionsByExamId;
+		return quesrtionsImpl.getAllQuestionsByExamId(uriInfo, examId,userId);
 	}
 
 	@GET
 	@Path("{questionId}")
 	public Response getQuestionsByQuestionId(@Context UriInfo uriInfo, @PathParam("examId") int examId,
 			@PathParam("questionId") int questionId,@PathParam("userId") int userId) throws ExceptionOccurred, CustomException {
-		Response questionsByQuestionId = quesrtionsImpl.getQuestionsByQuestionId(uriInfo, examId, questionId,userId);
-		return questionsByQuestionId;
+		return quesrtionsImpl.getQuestionsByQuestionId(uriInfo, examId, questionId,userId);
 	}
 
 	@POST
 	public Response addQuestionsByExamId(@Context UriInfo uriInfo, @PathParam("examId") int examId,@PathParam("userId") int userId, QuestionBean questionBean)
 			throws ExceptionOccurred, CustomException {
 		// TODO Auto-generated method stub
-		Response addQuestionsByExamId = quesrtionsImpl.addQuestionsByExamId(uriInfo, examId,userId,questionBean);
-		return addQuestionsByExamId;
+		return quesrtionsImpl.addQuestionsByExamId(uriInfo, examId,userId,questionBean);
 	}
 
 	@PUT
@@ -61,8 +58,7 @@ public class ExamQuestionsController implements QuestionsService {
 	public Response updateQuestionsByQuestionId(@Context UriInfo uriInfo, @PathParam("examId") int examId,
 			@PathParam("questionId") int questionId,@PathParam("userId") int userId,QuestionBean questionBean) throws ExceptionOccurred, CustomException {
 		// TODO Auto-generated method stub
-		Response updateQuestionsByQuestionId = quesrtionsImpl.updateQuestionsByQuestionId(uriInfo, examId, questionId,userId,questionBean);
-		return updateQuestionsByQuestionId;
+		return quesrtionsImpl.updateQuestionsByQuestionId(uriInfo, examId, questionId,userId,questionBean);
 
 	}
 
@@ -70,8 +66,7 @@ public class ExamQuestionsController implements QuestionsService {
 	@Path("{questionId}")
 	public Response deleteQuestionsByQuestionId(@Context UriInfo uriInfo, @PathParam("examId") int examId,
 			@PathParam("questionId") int questionId,@PathParam("userId") int userId) throws ExceptionOccurred, CustomException {
-		Response deleteQuestionsByQuestionId = quesrtionsImpl.deleteQuestionsByQuestionId(uriInfo, examId, questionId,userId);
-		return deleteQuestionsByQuestionId;
+		return quesrtionsImpl.deleteQuestionsByQuestionId(uriInfo, examId, questionId,userId);
 	}
 
 }

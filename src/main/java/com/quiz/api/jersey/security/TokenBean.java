@@ -1,6 +1,6 @@
 package com.quiz.api.jersey.security;
 
-public class TokenBean {
+class TokenBean {
 
 	private String authToken;
 	private String expiresAt;

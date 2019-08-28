@@ -21,10 +21,10 @@ import com.quiz.api.jersey.utils.Links;
 
 public class QuestionsServiceImpl implements QuestionsService {
 
-	static Logger LOG = Logger.getLogger(QuestionsServiceImpl.class);
-	private static QuestionsDao questionsDao = new QuestionsDao();
+	private static final Logger LOG = Logger.getLogger(QuestionsServiceImpl.class);
+	private static final QuestionsDao questionsDao = new QuestionsDao();
 	private static ExamDao examDao = new ExamDao();
-	private static UserDao userDao = new UserDao();
+	private static final UserDao userDao = new UserDao();
 	private static List<Links> examLinks;
 
 	public QuestionsServiceImpl() {
@@ -36,8 +36,7 @@ public class QuestionsServiceImpl implements QuestionsService {
 			throws ExceptionOccurred, CustomException {
 		Response examsByExamId = userDao.getExamsByExamId(uriInfo, userId, examId);
 		if (examsByExamId.getStatus() == 200) {
-			Response addQuestionsByExamId = questionsDao.getAllQuestionsByExamId(uriInfo, examId, userId);
-			return addQuestionsByExamId;
+			return questionsDao.getAllQuestionsByExamId(uriInfo, examId, userId);
 		} else {
 			examLinks = new ArrayList<>();
 			examLinks.add(HateoasUtils.getSelfDetails(uriInfo));
@@ -51,8 +50,7 @@ public class QuestionsServiceImpl implements QuestionsService {
 			throws ExceptionOccurred, CustomException {
 		Response examsByExamId = userDao.getExamsByExamId(uriInfo, userId, examId);
 		if (examsByExamId.getStatus() == 200) {
-			Response questionsByQuestionId = questionsDao.getQuestionsByQuestionId(uriInfo, examId, questionId, userId);
-			return questionsByQuestionId;
+			return questionsDao.getQuestionsByQuestionId(uriInfo, examId, questionId, userId);
 		} else {
 			examLinks = new ArrayList<>();
 			examLinks.add(HateoasUtils.getSelfDetails(uriInfo));
@@ -66,10 +64,9 @@ public class QuestionsServiceImpl implements QuestionsService {
 	public Response addQuestionsByExamId(UriInfo uriInfo, int examId,int userId,QuestionBean questionBean) throws ExceptionOccurred, CustomException {
 		Response examsByExamId = userDao.getExamsByExamId(uriInfo, userId, examId);
 		if(examsByExamId.getStatus() == 200) {
-			boolean valid=(questionBean.getOptions().getOption_A().equalsIgnoreCase("") || (questionBean.getOptions().getOption_A() == null) || questionBean.getOptions().getOption_B().equalsIgnoreCase("") || (questionBean.getOptions().getOption_B() == null) || questionBean.getOptions().getOption_Correct().equalsIgnoreCase("") || (questionBean.getOptions().getOption_Correct() == null)) ? false : true;
+			boolean valid= !questionBean.getOptions().getOption_A().equalsIgnoreCase("") && (questionBean.getOptions().getOption_A() != null) && !questionBean.getOptions().getOption_B().equalsIgnoreCase("") && (questionBean.getOptions().getOption_B() != null) && !questionBean.getOptions().getOption_Correct().equalsIgnoreCase("") && (questionBean.getOptions().getOption_Correct() != null);
 			if(valid) {
-				Response addQuestionsByExamId = questionsDao.addQuestionsByExamId(uriInfo, examId,userId,questionBean);
-				return addQuestionsByExamId;
+				return questionsDao.addQuestionsByExamId(uriInfo, examId,userId,questionBean);
 			}else {
 				return Response.status(Status.BAD_REQUEST).entity(new CustomException("Input is not valid", 400,
 						"Given input is not a valid "+ questionBean, examLinks)).build();
@@ -86,18 +83,15 @@ public class QuestionsServiceImpl implements QuestionsService {
 
 	@Override
 	public Response updateQuestionsByQuestionId(UriInfo uriInfo, int examId, int questionId, int userId,
-			QuestionBean questionBean) throws ExceptionOccurred, CustomException {
-		Response updateQuestionsByQuestionId = questionsDao.updateQuestionsByQuestionId(uriInfo, examId, questionId,
+			QuestionBean questionBean) {
+		return questionsDao.updateQuestionsByQuestionId(uriInfo, examId, questionId,
 				userId, questionBean);
-		return updateQuestionsByQuestionId;
 	}
 
 	@Override
-	public Response deleteQuestionsByQuestionId(UriInfo uriInfo, int examId, int questionId, int userId)
-			throws ExceptionOccurred, CustomException {
-		Response deleteQuestionsByQuestionId = questionsDao.deleteQuestionsByQuestionId(uriInfo, examId, questionId,
+	public Response deleteQuestionsByQuestionId(UriInfo uriInfo, int examId, int questionId, int userId) {
+		return questionsDao.deleteQuestionsByQuestionId(uriInfo, examId, questionId,
 				userId);
-		return deleteQuestionsByQuestionId;
 	}
 
 }

@@ -15,8 +15,8 @@ import com.quiz.api.jersey.security.AuthenticationController;
 
 public class HateoasUtils {
 	 
-	static Logger LOG = Logger.getLogger(HateoasUtils.class);
-	public HateoasUtils() {
+	private static final Logger LOG = Logger.getLogger(HateoasUtils.class);
+	private HateoasUtils() {
 		LOG.info("Invoked " +this.getClass().getName());
 	}
 

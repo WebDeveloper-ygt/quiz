@@ -1,7 +1,5 @@
 package com.quiz.api.jersey.model;
 
-import java.util.List;
-
 public class QuestionBean {
 
 	private int questionId;

@@ -1,6 +1,6 @@
 package com.quiz.api.jersey.security;
 
-import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 import javax.annotation.Priority;
 import javax.ws.rs.Priorities;
@@ -25,19 +25,19 @@ import io.jsonwebtoken.Jwts;
 @Priority(Priorities.AUTHENTICATION)
 public class AuthenticationFilter implements ContainerRequestFilter {
 
-	Logger LOG = Logger.getLogger(AuthenticationFilter.class);
+	private final Logger LOG = Logger.getLogger(AuthenticationFilter.class);
 
 	@Context
 	UriInfo uriInfo;
 
 	@Override
-	public void filter(ContainerRequestContext requestContext) throws IOException {
+	public void filter(ContainerRequestContext requestContext) {
 		String authHeader = requestContext.getHeaderString(HttpHeaders.AUTHORIZATION);
 		String jwtToken = authHeader.substring("Bearer ".length()).trim();
 
 		try {
 
-			Jws<Claims> parseClaimsJws = Jwts.parser().setSigningKey(ConstantUtils.SECRET.getBytes("UTF-8"))
+			Jws<Claims> parseClaimsJws = Jwts.parser().setSigningKey(ConstantUtils.SECRET.getBytes(StandardCharsets.UTF_8))
 					.parseClaimsJws(jwtToken);
 			LOG.info("#### valid token : " + jwtToken);
 			LOG.info("#### valid token Details : " + parseClaimsJws.getBody().get("name"));

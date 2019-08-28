@@ -9,9 +9,9 @@ import com.quiz.api.jersey.model.UserBean;
 
 public interface UserService{
 
-	public Response getAllUsers(UriInfo uriInfo) throws ExceptionOccurred, CustomException;
-	public Response getUser(int userId, UriInfo uriInfo) throws ExceptionOccurred, CustomException;
-	public Response addUser(UserBean user, UriInfo uriInfo) throws ExceptionOccurred, CustomException;
-	public Response updateUser(UserBean user, int userId, UriInfo uriInfo)throws ExceptionOccurred, CustomException;
-	public Response deleteUser(int userId, UriInfo uriInfo) throws ExceptionOccurred, CustomException;
+	Response getAllUsers(UriInfo uriInfo) throws ExceptionOccurred;
+	Response getUser(int userId, UriInfo uriInfo) throws ExceptionOccurred;
+	Response addUser(UserBean user, UriInfo uriInfo) throws ExceptionOccurred, CustomException;
+	Response updateUser(UserBean user, int userId, UriInfo uriInfo)throws ExceptionOccurred;
+	Response deleteUser(int userId, UriInfo uriInfo) throws ExceptionOccurred;
 }

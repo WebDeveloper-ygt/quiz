@@ -13,32 +13,29 @@ import com.quiz.api.jersey.service.ExamService;
 
 public class ExamServiceImpl implements ExamService {
 
-	Logger LOG = Logger.getLogger(ExamServiceImpl.class);
-	private static ExamDao examDao = new ExamDao();
+	private static final ExamDao examDao = new ExamDao();
 	
 	public ExamServiceImpl() {
+		Logger LOG = Logger.getLogger(ExamServiceImpl.class);
 		LOG.info("Invoked " +this.getClass().getName());
 	}
 
 	@Override
-	public Response addExams(UriInfo uriInfo, ExamBean examBean, int userId) throws ExceptionOccurred, CustomException {
-		Response addExams = examDao.addExams(uriInfo, examBean, userId);
-		return addExams;
+	public Response addExams(UriInfo uriInfo, ExamBean examBean, int userId) throws ExceptionOccurred {
+        return examDao.addExams(uriInfo, examBean, userId);
 		
 	}
 
 	@Override
 	public Response updateExams(UriInfo uriInfo, ExamBean examBean, int userId, int examId)
 			throws ExceptionOccurred, CustomException {
-		Response updateExams = examDao.updateExams(uriInfo, examBean, userId, examId);
-		return updateExams;
+        return examDao.updateExams(uriInfo, examBean, userId, examId);
 	}
 
 	@Override
 	public Response deleteExams(UriInfo uriInfo, int userId, int examId)
 			throws ExceptionOccurred, CustomException {
-		Response deleteExams = examDao.deleteExams(uriInfo, userId, examId);
-		return deleteExams;
+        return examDao.deleteExams(uriInfo, userId, examId);
 	}
 
 }

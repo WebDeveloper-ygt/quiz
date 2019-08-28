@@ -28,27 +28,25 @@ import com.quiz.api.jersey.utils.Links;
 
 public class UserDao implements UserService {
 
-	static Logger LOG = Logger.getLogger(UserDao.class);
+	private static final Logger LOG = Logger.getLogger(UserDao.class);
 	private static List<UserBean> userList;
 	private static List<ExamBean> examList;
 	private static Connection dbConnection;
-	static List<Links> exceptionLink;
-	static String relMessage ;
+	private static List<Links> exceptionLink;
+	private static String relMessage ;
 	public UserDao() {
 		LOG.info("Invoked " +this.getClass().getName());
 	}
 
 	@Override
-	public Response getAllUsers(@Context UriInfo uriInfo) throws ExceptionOccurred, CustomException {
+	public Response getAllUsers(@Context UriInfo uriInfo) throws ExceptionOccurred {
 
-		Response userDetailsInCommon = getUserDetailsInCommon(ConstantUtils.USERS, uriInfo, 0);
-		return userDetailsInCommon;
+		return getUserDetailsInCommon(ConstantUtils.USERS, uriInfo, 0);
 	}
 
 	@Override
-	public Response getUser(int userId, @Context UriInfo uriInfo) throws ExceptionOccurred, CustomException {
-		Response userDetailsInCommon = getUserDetailsInCommon((ConstantUtils.USERS_ID + userId), uriInfo, userId);
-		return userDetailsInCommon;
+	public Response getUser(int userId, @Context UriInfo uriInfo) throws ExceptionOccurred {
+		return getUserDetailsInCommon((ConstantUtils.USERS_ID + userId), uriInfo, userId);
 	}
 
 	@Override
@@ -74,10 +72,9 @@ public class UserDao implements UserService {
 				pst.setString(7, Base64.getEncoder().encodeToString(user.getPassword().getBytes()));
 
 				boolean execute = pst.execute();
-				if (execute == false) {
-					Response userDetails = getUserDetailsInCommon(
+				if (!execute) {
+					return getUserDetailsInCommon(
 							(ConstantUtils.USER_EMAIL + "'" + user.getEmailId() + "'"), uriInfo, 0);
-					return userDetails;
 				} else {
 					return Response.status(Status.BAD_REQUEST).build();
 				}
@@ -89,7 +86,7 @@ public class UserDao implements UserService {
 
 	@Override
 	public Response updateUser(UserBean user, int userId, @Context UriInfo uriInfo)
-			throws ExceptionOccurred, CustomException {
+			throws ExceptionOccurred {
 		Response userDetailsInCommon = getUserDetailsInCommon((ConstantUtils.USERS_ID + userId), uriInfo, userId);
 		if(userDetailsInCommon.getStatus() != 200) {
 			exceptionLink = new ArrayList<>();
@@ -97,7 +94,8 @@ public class UserDao implements UserService {
 			return Response.status(Status.NOT_FOUND).entity(new CustomException("User not Found", 404,
 					"User with user Id " + userId + " Not Found", exceptionLink)).build();
 		}else {
-		List<UserBean> entity = (List<UserBean>) userDetailsInCommon.getEntity();
+			//noinspection unchecked
+			List<UserBean> entity = (List<UserBean>) userDetailsInCommon.getEntity();
 		entity.iterator();
 		for (UserBean userBean : entity) {
 			String userName = ((user.getUserName() == null) || (user.getUserName().equalsIgnoreCase("")))
@@ -145,7 +143,7 @@ public class UserDao implements UserService {
 	}
 
 	@Override
-	public Response deleteUser(int userId, @Context UriInfo uriInfo) throws CustomException, ExceptionOccurred {
+	public Response deleteUser(int userId, @Context UriInfo uriInfo) throws ExceptionOccurred {
 		Response userDetailsInCommon = getUserDetailsInCommon(ConstantUtils.USERS_ID + userId, uriInfo, userId);
 		if (userDetailsInCommon.getStatus() == 200) {
 			try {
@@ -174,8 +172,8 @@ public class UserDao implements UserService {
 		}
 	}
 
-	public static Response getUserDetailsInCommon(String statement, @Context UriInfo uriInfo, int id)
-			throws CustomException, ExceptionOccurred {
+	private static Response getUserDetailsInCommon(String statement, @Context UriInfo uriInfo, int id)
+			throws ExceptionOccurred {
 
 		userList = new ArrayList<>();
 		try {
@@ -225,17 +223,15 @@ public class UserDao implements UserService {
 
 	}
 
-	public Response getExamsByExamAndUserId(UriInfo uriInfo, int userId) throws ExceptionOccurred, CustomException {
-		Response examsByExamId = getCommonExams(uriInfo, userId, 0);
-		return examsByExamId;
+	public Response getExamsByExamAndUserId(UriInfo uriInfo, int userId) throws ExceptionOccurred {
+		return getCommonExams(uriInfo, userId, 0);
 	}
 
-	public Response getExamsByExamId(UriInfo uriInfo, int userId, int examId) throws ExceptionOccurred, CustomException {
-		Response examsByExamId = getCommonExams(uriInfo, userId, examId);
-		return examsByExamId;
+	public Response getExamsByExamId(UriInfo uriInfo, int userId, int examId) throws ExceptionOccurred {
+		return getCommonExams(uriInfo, userId, examId);
 	}
 
-	public Response getCommonExams(UriInfo uriInfo, int userId, int examId) throws ExceptionOccurred, CustomException{
+	public Response getCommonExams(UriInfo uriInfo, int userId, int examId) throws ExceptionOccurred {
 		examList = new ArrayList<>();
 		try {
 			dbConnection = ApiUtils.getDbConnection();

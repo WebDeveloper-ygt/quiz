@@ -1,6 +1,7 @@
 package com.quiz.api.jersey.security;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,11 +32,9 @@ import io.jsonwebtoken.security.InvalidKeyException;
 @Path("/identity")
 public class AuthenticationController {
 
-	Logger LOG = Logger.getLogger(AuthenticationController.class);
+	private final Logger LOG = Logger.getLogger(AuthenticationController.class);
 	String role = "user";
-	TokenBean jwtToken;
-	TokenBean tokenBean;
-	Connection dbConnection;
+	private Connection dbConnection;
 	@Context
 	UriInfo uriInfo;
 	
@@ -66,8 +65,8 @@ public class AuthenticationController {
 
 	}
 
-	private TokenBean issueJWtToken(String username, String role2)
-			throws InvalidKeyException, UnsupportedEncodingException {
+	private TokenBean issueJWtToken(String username)
+			throws InvalidKeyException {
 
 		ZonedDateTime datetime = ZonedDateTime.now();
 		Date issuedDate = Date.from(datetime.toInstant());
@@ -79,9 +78,9 @@ public class AuthenticationController {
 									 .setAudience(uriInfo.getAbsolutePath().toString())
 									 .setIssuedAt(issuedDate)
 									 .setExpiration(expriesDate).claim("name", username)
-									 .signWith(SignatureAlgorithm.HS256, ConstantUtils.SECRET.getBytes("UTF-8"))
+									 .signWith(SignatureAlgorithm.HS256, ConstantUtils.SECRET.getBytes(StandardCharsets.UTF_8))
 									 .compact();
-		tokenBean = new TokenBean();
+		TokenBean tokenBean = new TokenBean();
 		tokenBean.setAuthToken(token);
 		tokenBean.setExpiresAt(expriesDate.toString());
 		return tokenBean;
@@ -104,8 +103,9 @@ public class AuthenticationController {
 
 			ResultSet result = pst.executeQuery();
 
+			//noinspection unchecked
 			while (result.next()) {
-				jwtToken = issueJWtToken(result.getString(2), result.getString(8));
+				TokenBean jwtToken = issueJWtToken(result.getString(2));
 				return Response.status(Status.OK).entity(jwtToken).build();
 			}
 		} catch (Exception e) {

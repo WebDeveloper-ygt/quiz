@@ -1,0 +1,98 @@
+/*CompletionStage*/ /*Response*/
+/*
+	    CompletableFuture future = new CompletableFuture<>();
+	    new Thread( () ->{
+            Response allUsers = null;
+	       try{
+	          allUsers= userServiceImpl.getAllUsers(uriInfo);
+           }catch (ExceptionOccurred | CustomException e){
+	           e.printStackTrace();
+           }
+	       future.complete(allUsers);
+        }).start();
+	    return  future;
+	    */
+
+       /* Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Response allUsers = userServiceImpl.getAllUsers(uriInfo);
+                    asyncResponse.resume(allUsers);
+                } catch (ExceptionOccurred | CustomException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        System.out.println(Thread.currentThread().getName());
+        executorService.submit(runnable);
+        */
+
+        /*
+        Callable<Response> callable = new Callable<Response>() {
+            @Override
+            public Response call() throws Exception {
+                Response allUsers = userServiceImpl.getAllUsers(uriInfo);
+                return allUsers;
+            }
+        };
+
+        Future<Response> submit = executorService.submit(callable);
+        try {
+            asyncResponse.resume(submit.get());
+        }catch ( ExecutionException |InterruptedException e ){
+            e.printStackTrace();
+        }
+
+        executorService.shutdown();
+        */
+
+       /*
+        Response allUsers = userServiceImpl.getAllUsers(uriInfo);
+        return allUsers;
+        */
+
+       /*
+       new Thread(()->{
+           Response allUsers =null;
+           try{
+               allUsers = userServiceImpl.getAllUsers(uriInfo);
+           }catch (ExceptionOccurred | CustomException e){
+               e.printStackTrace();
+           }
+           asyncResponse.resume(allUsers);
+       }).start();
+       */
+
+       /*
+       executorService.execute(()->{
+            try {
+                asyncResponse.setTimeout(1000, TimeUnit.MILLISECONDS);
+                asyncResponse.setTimeoutHandler(timeout->{
+                    timeout.resume(Response.status(Response.Status.REQUEST_TIMEOUT).entity("Request timeout happened").build());
+                });
+                Response allUsers = userServiceImpl.getAllUsers(uriInfo);
+                asyncResponse.resume(allUsers);
+            }catch (ExceptionOccurred | CustomException e){
+                e.printStackTrace();
+            }
+        });
+        */
+
+       /* new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Response allUsers = userServiceImpl.getAllUsers(uriInfo);
+                    asyncResponse.resume(allUsers);
+                }catch (ExceptionOccurred | CustomException e){
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+        */
+
+
+
+
+        
