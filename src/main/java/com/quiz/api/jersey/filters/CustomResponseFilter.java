@@ -13,7 +13,7 @@ public class CustomResponseFilter implements ContainerResponseFilter {
 		// TODO Auto-generated method stub
 
 		responseContext.getHeaders().add("X-Powered-By", "Jersey-Api");
-		responseContext.getHeaders().add("Access-Control-Allow-Origin", "*");
+		//responseContext.getHeaders().add("Access-Control-Allow-Origin", "*");
 	}
 
 }
