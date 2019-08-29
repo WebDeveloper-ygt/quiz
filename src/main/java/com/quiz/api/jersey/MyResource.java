@@ -27,7 +27,7 @@ public class MyResource {
      * @return String that will be returned as a text/plain response.
      */
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response getIt() {
         UserBean userBean = new UserBean();
         List<UserBean> userBeanList = new ArrayList<>();
