@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
 public class ApiUtils {
 
 	private static final Logger LOG=Logger.getLogger(ApiUtils.class);
-	private static final String URL = "jdbc:mysql://127.0.0.1:15432/quizdb";
+	private static final String URL = "jdbc:mysql://mysql:3306/quizdb";
 	private static final String USER = "admin";
 	private static final String PASSWORD = "admin";
 	private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
