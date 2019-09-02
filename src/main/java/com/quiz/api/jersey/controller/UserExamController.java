@@ -49,7 +49,7 @@ public class UserExamController{
 		CompletableFuture.supplyAsync(()->{
 			Response examId =null;
 			try {
-				examId=userServiceImpl.getExamsByExamAndUserId(uriInfo, userId);
+				examId=userServiceImpl.getExamsByExamAndUserId(userId);
 			} catch (ExceptionOccurred | CustomException exception) {
 				exception.printStackTrace();
 			}
@@ -59,29 +59,29 @@ public class UserExamController{
 
 	@GET
 	@Path("{examId}")
-	public Response getExamsByExamId(@Context UriInfo uriInfo, @PathParam("userId") int userId,
+	public Response getExamsByExamId(@PathParam("userId") int userId,
 			@PathParam("examId") int examId) throws ExceptionOccurred, CustomException {
-        return userServiceImpl.getExamsByExamId(uriInfo, userId, examId);
+        return userServiceImpl.getExamsByExamId(userId, examId);
 	}
 
 	@POST
-	public Response addExams(@Context UriInfo uriInfo, ExamBean examBean,@PathParam("userId") int userId)
+	public Response addExams(ExamBean examBean,@PathParam("userId") int userId)
 			throws ExceptionOccurred, CustomException {
-        return examServiceImpl.addExams(uriInfo, examBean, userId);
+        return examServiceImpl.addExams( examBean, userId);
 	}
 
 	@PUT
 	@Path("{examId}")
-	public Response updateExams(@Context UriInfo uriInfo, ExamBean examBean, @PathParam("userId") int userId,
+	public Response updateExams(ExamBean examBean, @PathParam("userId") int userId,
 			@PathParam("examId") int examId) throws ExceptionOccurred, CustomException {
-        return examServiceImpl.updateExams(uriInfo, examBean, userId, examId);
+        return examServiceImpl.updateExams(examBean, userId, examId);
 	}
 
 	@DELETE
 	@Path("{examId}")
-	public Response deleteExams(UriInfo uriInfo, @PathParam("userId") int userId,
+	public Response deleteExams(@PathParam("userId") int userId,
 			@PathParam("examId") int examId) throws ExceptionOccurred, CustomException {
-        return examServiceImpl.deleteExams(uriInfo, userId, examId);
+        return examServiceImpl.deleteExams(userId, examId);
 	}
 	
 	@Path("{examId}/questions")
