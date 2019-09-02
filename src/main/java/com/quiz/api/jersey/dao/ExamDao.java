@@ -22,7 +22,7 @@ import com.quiz.api.jersey.utils.ConstantUtils;
 import com.quiz.api.jersey.utils.HateoasUtils;
 import com.quiz.api.jersey.utils.Links;
 
-public class ExamDao implements ExamService {
+public class ExamDao{
 
 	private final Logger LOG = Logger.getLogger(ExamDao.class);
 	private static final UserDao userDao = new UserDao();
@@ -33,8 +33,7 @@ public class ExamDao implements ExamService {
 		LOG.info("Invoked " + this.getClass().getName());
 	}
 
-	@Override
-	public Response addExams(UriInfo uriInfo, ExamBean examBean, int userId) throws ExceptionOccurred {
+	public Response addExams(ExamBean examBean, int userId) throws ExceptionOccurred {
 		try {
 			dbConnection = ApiUtils.getDbConnection();
 			String addExams = "INSERT INTO `quiz_exams`(`examName`,`examDuration`,`negativeMarks`,`numberOfQuestions`,`userId`)VALUES(?,?,?,?,?)";
@@ -51,10 +50,10 @@ public class ExamDao implements ExamService {
 				ResultSet generatedKeys = pst.getGeneratedKeys();
 				while (generatedKeys.next()) {
 					int genId = generatedKeys.getInt(1);
-					return userDao.getCommonExams(uriInfo, userId, genId);
+					return userDao.getCommonExams(userId, genId);
 				}
 			} else {
-				Links selfDetails = HateoasUtils.getSelfDetails(uriInfo);
+				Links selfDetails = HateoasUtils.getSelfDetails();
 				examLinks.add(selfDetails);
 				CustomException customException = new CustomException("Exam Not added", 400,
 						"Bad Request found exam not added", examLinks);
@@ -64,20 +63,20 @@ public class ExamDao implements ExamService {
 			throw new ExceptionOccurred();
 		}
 
-		Links selfDetails = HateoasUtils.getSelfDetails(uriInfo);
+		Links selfDetails = HateoasUtils.getSelfDetails();
 		examLinks.add(selfDetails);
 		CustomException customException = new CustomException("Exam Not added", 400, "Bad Request found exam not added",
 				examLinks);
 		return Response.status(Status.BAD_REQUEST).entity(customException).build();
 	}
 
-	@Override
-	public Response updateExams(UriInfo uriInfo, ExamBean examBean, int userId, int examId)
+
+	public Response updateExams(ExamBean examBean, int userId, int examId)
 			throws ExceptionOccurred {
-		Response commonExams = userDao.getCommonExams(uriInfo, userId, examId);
+		Response commonExams = userDao.getCommonExams( userId, examId);
 		if (commonExams.getStatus() != 200) {
 			examLinks = new ArrayList<>();
-			examLinks.add(HateoasUtils.getSelfDetails(uriInfo));
+			examLinks.add(HateoasUtils.getSelfDetails());
 			return Response.status(Status.NOT_FOUND).entity(new CustomException("Exam Not Found", 404,
 					"Exam for the ExamID " + examId + " Not Found", examLinks)).build();
 		} else {
@@ -108,10 +107,10 @@ public class ExamDao implements ExamService {
 					int executeUpdate = updateExams.executeUpdate();
 					LOG.info("Update Counts :" +executeUpdate);
 					if (executeUpdate >= 1) {
-						return userDao.getCommonExams(uriInfo, userId, examId);
+						return userDao.getCommonExams(userId, examId);
 					} else {
 						examLinks = new ArrayList<>();
-						examLinks.add(HateoasUtils.getSelfDetails(uriInfo));
+						examLinks.add(HateoasUtils.getSelfDetails());
 						return Response.status(Status.BAD_REQUEST).entity(new CustomException("Exam update failed", 400,
 								"Exam with  examId " + examId + " has not been updated", examLinks)).build();
 					}
@@ -125,12 +124,12 @@ public class ExamDao implements ExamService {
 		throw new ExceptionOccurred();
 	}
 
-	@Override
-	public Response deleteExams(UriInfo uriInfo, int userId, int examId) throws ExceptionOccurred {
-		Response commonExams = userDao.getCommonExams(uriInfo, userId, examId);
+
+	public Response deleteExams(int userId, int examId) throws ExceptionOccurred {
+		Response commonExams = userDao.getCommonExams(userId, examId);
 		if (commonExams.getStatus() != 200) {
 			examLinks = new ArrayList<>();
-			examLinks.add(HateoasUtils.getSelfDetails(uriInfo));
+			examLinks.add(HateoasUtils.getSelfDetails());
 			return Response.status(Status.NOT_FOUND).entity(new CustomException("Exam Not Found", 404,
 					"Exam for the ExamID " + examId + " Not Found", examLinks)).build();
 		} else {
@@ -140,12 +139,12 @@ public class ExamDao implements ExamService {
 			int executeUpdate = createStatement.executeUpdate(ConstantUtils.EXAM_DELETE+examId+" and userId="+userId);
 			if(executeUpdate == 1) {
 				examLinks = new ArrayList<>();
-				examLinks.add(HateoasUtils.getSelfDetails(uriInfo));
+				examLinks.add(HateoasUtils.getSelfDetails());
 				return Response.status(Status.OK).entity(new CustomException("Exam Deleted", 200,
 						"Eaxm with  examId " + examId + " for user "+userId+ " has been deleted", examLinks)).build();
 			}else {
 				examLinks = new ArrayList<>();
-				examLinks.add(HateoasUtils.getSelfDetails(uriInfo));
+				examLinks.add(HateoasUtils.getSelfDetails());
 				return Response.status(Status.NOT_FOUND).entity(new CustomException("Exam Not Deleted", 400,
 						"Eaxm with  examId " + examId + " for user "+userId+ " has not deleted", examLinks)).build();
 			}

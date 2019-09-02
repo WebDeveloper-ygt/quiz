@@ -33,7 +33,7 @@ public class WebExceptionMapper implements ExceptionMapper<WebApplicationExcepti
             customException.setStatusCode(response.getStatus());
             customException.setDescription("Requested Method is not allowed for this resource");
             customException.setMessage(exception.getMessage());
-            links.add(HateoasUtils.getSelfDetails(uriInfo));
+            links.add(HateoasUtils.getSelfDetails());
             customException.setLinks(links);
         }
         return  Response.status(Response.Status.METHOD_NOT_ALLOWED).entity(customException).build();

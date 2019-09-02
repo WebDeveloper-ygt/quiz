@@ -38,13 +38,13 @@ public class UserExamController{
 	private static final UserServiceImpl userServiceImpl = new UserServiceImpl();
 	private static final ExamServiceImpl examServiceImpl = new ExamServiceImpl();
 	private static final ExecutorService executorService = ThreadExecutor.getExecutor();
-
+	@Context UriInfo uriInfo;
 	UserExamController() {
 		LOG.info("Invoked " +this.getClass().getName());
 	}
 
 	@GET
-	public void getExamsByExamAndUserId(@Context UriInfo uriInfo, @PathParam("userId") int userId, @Suspended AsyncResponse asyncResponse)
+	public void getExamsByExamAndUserId(@PathParam("userId") int userId, @Suspended AsyncResponse asyncResponse)
 			throws ExceptionOccurred, CustomException {
 		CompletableFuture.supplyAsync(()->{
 			Response examId =null;

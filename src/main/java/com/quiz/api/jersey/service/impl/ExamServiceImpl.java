@@ -11,7 +11,7 @@ import com.quiz.api.jersey.exception.ExceptionOccurred;
 import com.quiz.api.jersey.model.ExamBean;
 import com.quiz.api.jersey.service.ExamService;
 
-public class ExamServiceImpl implements ExamService {
+public class ExamServiceImpl {
 
 	private static final ExamDao examDao = new ExamDao();
 	
@@ -20,22 +20,20 @@ public class ExamServiceImpl implements ExamService {
 		LOG.info("Invoked " +this.getClass().getName());
 	}
 
-	@Override
-	public Response addExams(UriInfo uriInfo, ExamBean examBean, int userId) throws ExceptionOccurred {
-        return examDao.addExams(uriInfo, examBean, userId);
+
+	public Response addExams(ExamBean examBean, int userId) throws ExceptionOccurred {
+        return examDao.addExams(examBean, userId);
 		
 	}
 
-	@Override
-	public Response updateExams(UriInfo uriInfo, ExamBean examBean, int userId, int examId)
+	public Response updateExams(ExamBean examBean, int userId, int examId)
 			throws ExceptionOccurred, CustomException {
-        return examDao.updateExams(uriInfo, examBean, userId, examId);
+        return examDao.updateExams( examBean, userId, examId);
 	}
 
-	@Override
-	public Response deleteExams(UriInfo uriInfo, int userId, int examId)
+	public Response deleteExams(int userId, int examId)
 			throws ExceptionOccurred, CustomException {
-        return examDao.deleteExams(uriInfo, userId, examId);
+        return examDao.deleteExams(userId, examId);
 	}
 
 }

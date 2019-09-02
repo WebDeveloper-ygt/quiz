@@ -25,7 +25,7 @@ import com.quiz.api.jersey.utils.ConstantUtils;
 import com.quiz.api.jersey.utils.HateoasUtils;
 import com.quiz.api.jersey.utils.Links;
 
-public class QuestionsDao implements QuestionsService{
+public class QuestionsDao{
 
 	private static final Logger LOG = Logger.getLogger(QuestionsServiceImpl.class);
 	private static ExamDao examDao = new ExamDao();
@@ -36,18 +36,17 @@ public class QuestionsDao implements QuestionsService{
 		LOG.info("Invoked " + this.getClass().getName());
 	}
 	
-	@Override
-	public Response getAllQuestionsByExamId(UriInfo uriInfo, int examId,int userId) throws ExceptionOccurred {
-		return getQuestionInCommon(uriInfo, examId, 0);
+
+	public Response getAllQuestionsByExamId(int examId,int userId) throws ExceptionOccurred {
+		return getQuestionInCommon(examId, 0);
 	}
 
-	@Override
-	public Response getQuestionsByQuestionId(UriInfo uriInfo, int examId, int questionId,int userId)
+	public Response getQuestionsByQuestionId(int examId, int questionId,int userId)
 			throws ExceptionOccurred {
-		return getQuestionInCommon(uriInfo, examId, questionId);
+		return getQuestionInCommon(examId, questionId);
 	}
 
-	private Response getQuestionInCommon(UriInfo uriInfo, int examId, int questionId) throws ExceptionOccurred {
+	private Response getQuestionInCommon(int examId, int questionId) throws ExceptionOccurred {
 		
 		questionList= new ArrayList<>();
 		PreparedStatement pst;
@@ -80,14 +79,14 @@ public class QuestionsDao implements QuestionsService{
 			return Response.status(Status.OK).entity(new GenericEntity<List<QuestionBean>>(questionList) {}).build();
 		} else {
 			List<Links> exceptionLink = new ArrayList<>();
-			exceptionLink.add(HateoasUtils.getSelfDetails(uriInfo));
+			exceptionLink.add(HateoasUtils.getSelfDetails());
 			return Response.status(Status.NOT_FOUND).entity(
 					new CustomException("Questions Not Found", 404, "Question for exam-id " +examId + " not found", exceptionLink))
 					.build();
 		}
 	}
-	@Override
-	public Response addQuestionsByExamId(UriInfo uriInfo, int examId,int userId,QuestionBean questionBean) throws ExceptionOccurred {
+
+	public Response addQuestionsByExamId(int examId,int userId,QuestionBean questionBean) throws ExceptionOccurred {
 	 
 		QuestionOptionBean options = questionBean.getOptions();
 		try {
@@ -105,13 +104,13 @@ public class QuestionsDao implements QuestionsService{
 				int genId = generatedKeys.getInt(1);
 				Response examsByExamId = createQuestionOption(options,genId);
 				if(examsByExamId.getStatus() == 200) {
-					return getQuestionInCommon(uriInfo, examId, genId);
+					return getQuestionInCommon(examId, genId);
 				}else {
 					
 				}
 			}
 		} else {
-			
+			throw new ExceptionOccurred();
 		}
 		return null;
 		}catch (Exception e) {
@@ -150,14 +149,13 @@ public class QuestionsDao implements QuestionsService{
 		
 	}
 
-	@Override
-	public Response updateQuestionsByQuestionId(UriInfo uriInfo, int examId, int questionId,int userId,QuestionBean questionBean) {
+	public Response updateQuestionsByQuestionId(int examId, int questionId,int userId,QuestionBean questionBean) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	public Response deleteQuestionsByQuestionId(UriInfo uriInfo, int examId, int questionId,int userId) {
+
+	public Response deleteQuestionsByQuestionId(int examId, int questionId,int userId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
