@@ -48,7 +48,7 @@ public class UserController{
     CompletableFuture.supplyAsync(()->{
        		Response allusers = null;
 		   try {
-			   allusers = userServiceImpl.getAllUsers();
+			   allusers = userServiceImpl.getAllUsers(uriInfo);
 		   } catch (ExceptionOccurred | CustomException exception) {
 			  LOG.error("Exception Occurred : "+ exception.getMessage());
 		   }
@@ -64,7 +64,7 @@ public class UserController{
 		CompletableFuture.supplyAsync(()->{
 			Response user = null;
 			try {
-				user = userServiceImpl.getUser(userId);
+				user = userServiceImpl.getUser(uriInfo,userId);
 			} catch (ExceptionOccurred | CustomException exception) {
 				LOG.error("Exception Occurred : "+ exception.getMessage());
 			}
@@ -78,7 +78,7 @@ public class UserController{
 		CompletableFuture.supplyAsync(()->{
 			Response addUser = null;
 			try {
-				addUser = userServiceImpl.addUser(user);
+				addUser = userServiceImpl.addUser(uriInfo,user);
 			} catch (ExceptionOccurred | CustomException exception) {
 				exception.printStackTrace();
 			}
@@ -92,7 +92,7 @@ public class UserController{
 		CompletableFuture.supplyAsync(()->{
 			Response updateUser = null;
 			try {
-				updateUser = userServiceImpl.updateUser(user,userId);
+				updateUser = userServiceImpl.updateUser(uriInfo,user,userId);
 			} catch (ExceptionOccurred | CustomException exception) {
 				exception.printStackTrace();
 			}
@@ -106,7 +106,7 @@ public class UserController{
 		CompletableFuture.supplyAsync(()->{
 			Response deleteUser = null;
 			try {
-				deleteUser = userServiceImpl.deleteUser(userId);
+				deleteUser = userServiceImpl.deleteUser(uriInfo,userId);
 			} catch (ExceptionOccurred | CustomException exception) {
 				exception.printStackTrace();
 			}

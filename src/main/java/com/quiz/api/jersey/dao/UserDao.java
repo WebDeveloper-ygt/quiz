@@ -25,6 +25,7 @@ import com.quiz.api.jersey.utils.ApiUtils;
 import com.quiz.api.jersey.utils.ConstantUtils;
 import com.quiz.api.jersey.utils.HateoasUtils;
 import com.quiz.api.jersey.utils.Links;
+import org.glassfish.jersey.server.Uri;
 
 public class UserDao {
 
@@ -34,27 +35,28 @@ public class UserDao {
 	private static Connection dbConnection;
 	private static List<Links> exceptionLink;
 	private static String relMessage ;
+
 	public UserDao() {
 		LOG.info("Invoked " +this.getClass().getName());
 	}
 
-	public Response getAllUsers() throws ExceptionOccurred {
+	public Response getAllUsers(UriInfo uriInfo) throws ExceptionOccurred {
 
-		return getUserDetailsInCommon(ConstantUtils.USERS, 0);
+		return getUserDetailsInCommon(uriInfo,ConstantUtils.USERS, 0);
 	}
 
-	public Response getUser(int userId) throws ExceptionOccurred {
-		return getUserDetailsInCommon((ConstantUtils.USERS_ID + userId), userId);
+	public Response getUser(UriInfo uriInfo,int userId) throws ExceptionOccurred {
+		return getUserDetailsInCommon(uriInfo,(ConstantUtils.USERS_ID + userId), userId);
 	}
 
-	public Response addUser(UserBean user) throws ExceptionOccurred, CustomException {
-		Response userDetailsInCommon = getUserDetailsInCommon(
+	public Response addUser(UriInfo uriInfo,UserBean user) throws ExceptionOccurred, CustomException {
+		Response userDetailsInCommon = getUserDetailsInCommon(uriInfo,
 				(ConstantUtils.USER_EMAIL + "'" + user.getEmailId() + "'"), 0);
 		LOG.info("Status of the user already present is : " + userDetailsInCommon.getStatus());
 		if (userDetailsInCommon.getStatus() != 404) {
 			LOG.error("User Already Present :: "+ user.getEmailId());
 			exceptionLink = new ArrayList<>();
-			exceptionLink.add(HateoasUtils.getSelfDetails());
+			exceptionLink.add(HateoasUtils.getSelfDetails(uriInfo));
 			throw new CustomException("User Already Present", 400,
 					"User alreay present with Emailid " + user.getEmailId() + "", exceptionLink);
 		} else {
@@ -71,7 +73,7 @@ public class UserDao {
 
 				boolean execute = pst.execute();
 				if (!execute) {
-					return getUserDetailsInCommon(
+					return getUserDetailsInCommon(uriInfo,
 							(ConstantUtils.USER_EMAIL + "'" + user.getEmailId() + "'"), 0);
 				} else {
 					return Response.status(Status.BAD_REQUEST).build();
@@ -84,13 +86,13 @@ public class UserDao {
 	}
 
 
-	public Response updateUser(UserBean user, int userId)
+	public Response updateUser(UriInfo uriInfo,UserBean user, int userId)
 			throws ExceptionOccurred {
-		Response userDetailsInCommon = getUserDetailsInCommon((ConstantUtils.USERS_ID + userId), userId);
+		Response userDetailsInCommon = getUserDetailsInCommon(uriInfo,(ConstantUtils.USERS_ID + userId), userId);
 		if(userDetailsInCommon.getStatus() != 200) {
 			LOG.error("User Not Found :: " + userId);
 			exceptionLink = new ArrayList<>();
-			exceptionLink.add(HateoasUtils.getSelfDetails());
+			exceptionLink.add(HateoasUtils.getSelfDetails(uriInfo));
 			return Response.status(Status.NOT_FOUND).entity(new CustomException("User not Found", 404,
 					"User with user Id " + userId + " Not Found", exceptionLink)).build();
 		}else {
@@ -126,10 +128,10 @@ public class UserDao {
 				PreparedStatement prepareStatement = conn.prepareStatement(updateUser);
 				int update = prepareStatement.executeUpdate();
 				if (update >= 1) {
-					return getUserDetailsInCommon((ConstantUtils.USERS_ID + userId), userId);
+					return getUserDetailsInCommon(uriInfo,(ConstantUtils.USERS_ID + userId), userId);
 				} else {
 					exceptionLink = new ArrayList<>();
-					exceptionLink.add(HateoasUtils.getSelfDetails());
+					exceptionLink.add(HateoasUtils.getSelfDetails(uriInfo));
 					return Response.status(Status.BAD_REQUEST).entity(new CustomException("User update failed", 400,
 							"User with user id " + userId + " has not been updated", exceptionLink)).build();
 				}
@@ -143,8 +145,8 @@ public class UserDao {
 	}
 
 
-	public Response deleteUser(int userId) throws ExceptionOccurred {
-		Response userDetailsInCommon = getUserDetailsInCommon(ConstantUtils.USERS_ID + userId, userId);
+	public Response deleteUser(UriInfo uriInfo,int userId) throws ExceptionOccurred {
+		Response userDetailsInCommon = getUserDetailsInCommon(uriInfo,ConstantUtils.USERS_ID + userId, userId);
 		if (userDetailsInCommon.getStatus() == 200) {
 			try {
 				dbConnection = ApiUtils.getDbConnection();
@@ -152,12 +154,12 @@ public class UserDao {
 				int executeUpdate = createStatement.executeUpdate(ConstantUtils.USER_DELETE + userId);
 				if (executeUpdate == 1) {
 					exceptionLink = new ArrayList<>();
-					exceptionLink.add(HateoasUtils.getSelfDetails());
+					exceptionLink.add(HateoasUtils.getSelfDetails(uriInfo));
 					return Response.status(Status.OK).entity(new CustomException("User Deleted", 200,
 							"User with user Id " + userId + " deleted", exceptionLink)).build();
 				} else {
 					exceptionLink = new ArrayList<>();
-					exceptionLink.add(HateoasUtils.getSelfDetails());
+					exceptionLink.add(HateoasUtils.getSelfDetails(uriInfo));
 					return Response.status(Status.BAD_REQUEST).entity(new CustomException("User not Deleted", 400,
 							"User with user Id " + userId + " Not deleted", exceptionLink)).build();
 				}
@@ -167,13 +169,13 @@ public class UserDao {
 			}
 		} else {
 			exceptionLink = new ArrayList<>();
-			exceptionLink.add(HateoasUtils.getSelfDetails());
+			exceptionLink.add(HateoasUtils.getSelfDetails(uriInfo));
 			return Response.status(Status.NOT_FOUND).entity(new CustomException("User not Found", 404,
 					"User with user Id " + userId + " Not Found", exceptionLink)).build();
 		}
 	}
 
-	private static Response getUserDetailsInCommon(String statement, int id)
+	private Response getUserDetailsInCommon(UriInfo uriInfo, String statement, int id)
 			throws ExceptionOccurred {
 
 		userList = new ArrayList<>();
@@ -198,9 +200,9 @@ public class UserDao {
 				if (id == 0) {
 					// links.add(HateoasUtils.getAlluserDetails(uriInfo));
 					relMessage = "getUserById";
-					links.add(HateoasUtils.getDetailsById(result.getInt("userId"),relMessage));
+					links.add(HateoasUtils.getDetailsById(uriInfo,result.getInt("userId"),relMessage));
 				} else {
-					links.add(HateoasUtils.getSelfDetails());
+					links.add(HateoasUtils.getSelfDetails(uriInfo));
 				}
 				user.setLinks(links);
 
@@ -216,7 +218,7 @@ public class UserDao {
 			}).build();
 		} else {
 			exceptionLink = new ArrayList<>();
-			exceptionLink.add(HateoasUtils.getSelfDetails());
+			exceptionLink.add(HateoasUtils.getSelfDetails(uriInfo));
 			return Response.status(Status.NOT_FOUND).entity(
 					new CustomException("User Not Found", 404, "User with user id " + id + " not found", exceptionLink))
 					.build();
@@ -224,15 +226,15 @@ public class UserDao {
 
 	}
 
-	public Response getExamsByExamAndUserId(int userId) throws ExceptionOccurred {
-		return getCommonExams(userId, 0);
+	public Response getExamsByExamAndUserId(UriInfo uriInfo,int userId) throws ExceptionOccurred {
+		return getCommonExams(uriInfo,userId, 0);
 	}
 
-	public Response getExamsByExamId(int userId, int examId) throws ExceptionOccurred {
-		return getCommonExams(userId, examId);
+	public Response getExamsByExamId(UriInfo uriInfo,int userId, int examId) throws ExceptionOccurred {
+		return getCommonExams(uriInfo,userId, examId);
 	}
 
-	public Response getCommonExams(int userId, int examId) throws ExceptionOccurred {
+	public Response getCommonExams(UriInfo uriInfo,int userId, int examId) throws ExceptionOccurred {
 		examList = new ArrayList<>();
 		try {
 			dbConnection = ApiUtils.getDbConnection();
@@ -259,11 +261,11 @@ public class UserDao {
 				
 				//LOG.info("result.getFetchSize() -1 " + result.getRow()+ " "+result.getInt(1));
 				if(examId == 0) {
-					links.add(HateoasUtils.getDetailsById(result.getInt(1), relMessage));
+					links.add(HateoasUtils.getDetailsById(uriInfo,result.getInt(1), relMessage));
 				}else if(result.getRow() == 1){
-					links.add(HateoasUtils.getDetailsById(result.getInt(1), relMessage));
+					links.add(HateoasUtils.getDetailsById(uriInfo,result.getInt(1), relMessage));
 				}else {
-					links.add(HateoasUtils.getSelfDetails());
+					links.add(HateoasUtils.getSelfDetails(uriInfo));
 				}
 				exam.setLinks(links);
 				examList.add(exam);
@@ -279,7 +281,7 @@ public class UserDao {
 			}).build();
 		} else {
 			exceptionLink = new ArrayList<>();
-			exceptionLink.add(HateoasUtils.getSelfDetails());
+			exceptionLink.add(HateoasUtils.getSelfDetails(uriInfo));
 			return Response.status(Status.NOT_FOUND).entity(new CustomException("No Exams Found", 404,
 					"we dont find exams for above details", exceptionLink)).build();
 		}

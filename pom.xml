@@ -113,7 +113,8 @@
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>2.2</version>
 				<configuration>
-					<path>/QuizApi</path>
+					<path>/quiz</path>
+					<port>8181</port>
 				</configuration>
 			</plugin>
 		</plugins>

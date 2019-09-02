@@ -27,7 +27,8 @@ public class ExamQuestionsController {
 
 	private static final Logger LOG = Logger.getLogger(ExamQuestionsController.class);
 	private static final QuestionsServiceImpl quesrtionsImpl = new QuestionsServiceImpl();
-
+	@Context
+	UriInfo uriInfo;
 	public ExamQuestionsController() {
 		LOG.info("Invoked " + this.getClass().getName());
 	}

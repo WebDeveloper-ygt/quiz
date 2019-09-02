@@ -11,6 +11,7 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.ext.Provider;
 
+import com.quiz.api.jersey.exception.CustomException;
 import org.apache.log4j.Logger;
 
 import com.quiz.api.jersey.utils.ConstantUtils;
@@ -33,19 +34,21 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 	@Override
 	public void filter(ContainerRequestContext requestContext) {
 		String authHeader = requestContext.getHeaderString(HttpHeaders.AUTHORIZATION);
-		String jwtToken = authHeader.substring("Bearer ".length()).trim();
+		if(authHeader != null && !(authHeader.equalsIgnoreCase("bearer")) && authHeader.length() >=8) {
+			String jwtToken = authHeader.substring("Bearer ".length()).trim();
+			try {
 
-		try {
-
-			Jws<Claims> parseClaimsJws = Jwts.parser().setSigningKey(ConstantUtils.SECRET.getBytes(StandardCharsets.UTF_8))
-					.parseClaimsJws(jwtToken);
-			LOG.info("#### valid token : " + jwtToken);
-			LOG.info("#### valid token Details : " + parseClaimsJws.getBody().get("name"));
-		} catch (Exception e) {
-			LOG.error(e.getMessage());
-			requestContext.abortWith(HateoasUtils.unAuthorizedException());
+				Jws<Claims> parseClaimsJws = Jwts.parser().setSigningKey(ConstantUtils.SECRET.getBytes(StandardCharsets.UTF_8))
+						.parseClaimsJws(jwtToken);
+				LOG.info("#### valid token : " + jwtToken);
+				LOG.info("#### valid token Details : " + parseClaimsJws.getBody().get("name"));
+			} catch (Exception e) {
+				LOG.error(e.getMessage());
+				requestContext.abortWith(HateoasUtils.unAuthorizedException(uriInfo));
+			}
+		}else{
+			requestContext.abortWith(HateoasUtils.unAuthorizedException(uriInfo));
 		}
-
 	}
 
 }

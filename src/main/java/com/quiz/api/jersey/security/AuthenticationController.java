@@ -52,10 +52,10 @@ public class AuthenticationController {
 					return Response.status(Status.CREATED).entity(jwtToken.getEntity()).build();
 					
 				} else {
-					return HateoasUtils.userNotFound();
+					return HateoasUtils.userNotFound(uriInfo);
 				}
 			} else {
-				return HateoasUtils.unAuthorizedException();
+				return HateoasUtils.unAuthorizedException(uriInfo);
 			}
 		} catch (Exception e) {
 			LOG.error(e.getMessage());
@@ -111,7 +111,7 @@ public class AuthenticationController {
 			LOG.error(e.getMessage());
 			throw new ExceptionOccurred();
 		}
-		 return HateoasUtils.unAuthorizedException();
+		 return HateoasUtils.unAuthorizedException(uriInfo);
 		
 	}
 }

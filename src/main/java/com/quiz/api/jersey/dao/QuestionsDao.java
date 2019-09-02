@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -32,6 +33,8 @@ public class QuestionsDao{
 	private static UserDao userDao = new UserDao();
 	private static Connection dbConnection;
 	private static List<QuestionBean> questionList;
+	@Context
+	UriInfo uriInfo;
 	public QuestionsDao() {
 		LOG.info("Invoked " + this.getClass().getName());
 	}
@@ -79,7 +82,7 @@ public class QuestionsDao{
 			return Response.status(Status.OK).entity(new GenericEntity<List<QuestionBean>>(questionList) {}).build();
 		} else {
 			List<Links> exceptionLink = new ArrayList<>();
-			exceptionLink.add(HateoasUtils.getSelfDetails());
+			exceptionLink.add(HateoasUtils.getSelfDetails(uriInfo));
 			return Response.status(Status.NOT_FOUND).entity(
 					new CustomException("Questions Not Found", 404, "Question for exam-id " +examId + " not found", exceptionLink))
 					.build();
