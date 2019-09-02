@@ -52,16 +52,15 @@ public class AuthenticationController {
 					return Response.status(Status.CREATED).entity(jwtToken.getEntity()).build();
 					
 				} else {
-					return HateoasUtils.userNotFound(uriInfo);
+					return HateoasUtils.userNotFound();
 				}
 			} else {
-				return HateoasUtils.unAuthorizedException(uriInfo);
+				return HateoasUtils.unAuthorizedException();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOG.error(e.getMessage());
 			throw new ExceptionOccurred();
 		}
-		
 
 	}
 
@@ -109,12 +108,10 @@ public class AuthenticationController {
 				return Response.status(Status.OK).entity(jwtToken).build();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOG.error(e.getMessage());
 			throw new ExceptionOccurred();
-		} finally {
-			dbConnection.close();
 		}
-		 return HateoasUtils.unAuthorizedException(uriInfo);
+		 return HateoasUtils.unAuthorizedException();
 		
 	}
 }

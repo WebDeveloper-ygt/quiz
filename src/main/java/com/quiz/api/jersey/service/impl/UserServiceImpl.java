@@ -21,33 +21,33 @@ public class UserServiceImpl  {
 		LOG.info("Invoked " +this.getClass().getName());
 	}
 
-	public static Response getAllUsers(@Context UriInfo uriInfo) throws ExceptionOccurred, CustomException {
-        return userDao.getAllUsers(uriInfo);
+	public static Response getAllUsers()throws ExceptionOccurred, CustomException{
+        return userDao.getAllUsers();
 	}
 
-	public Response getUser(int userId, @Context UriInfo uriInfo)  throws ExceptionOccurred, CustomException{
-        return userDao.getUser(userId,uriInfo);
+	public Response getUser(int userId)  throws ExceptionOccurred, CustomException{
+        return userDao.getUser(userId);
 	
 	}
 
-	public Response addUser(UserBean user, @Context UriInfo uriInfo) throws ExceptionOccurred, CustomException {
-        return userDao.addUser(user, uriInfo);
+	public Response addUser(UserBean user) throws ExceptionOccurred, CustomException {
+        return userDao.addUser(user);
 	}
 
-	public Response updateUser(UserBean user, int userId, @Context UriInfo uriInfo) throws ExceptionOccurred, CustomException{
-        return userDao.updateUser(user,userId, uriInfo);
+	public Response updateUser(UserBean user, int userId) throws ExceptionOccurred, CustomException{
+        return userDao.updateUser(user,userId);
 	}
 
-	public Response deleteUser(int userId,@Context UriInfo uriInfo) throws ExceptionOccurred, CustomException {
-        return userDao.deleteUser(userId, uriInfo);
+	public Response deleteUser(int userId) throws ExceptionOccurred, CustomException {
+        return userDao.deleteUser(userId);
 	}
 
-	public Response getExamsByExamAndUserId(@Context UriInfo uriInfo, int userId) throws ExceptionOccurred, CustomException{
-        return userDao.getExamsByExamAndUserId(uriInfo, userId);
+	public Response getExamsByExamAndUserId(int userId) throws ExceptionOccurred, CustomException{
+        return userDao.getExamsByExamAndUserId(userId);
 	}
 
-	public Response getExamsByExamId(UriInfo uriInfo, int userId, int examId) throws ExceptionOccurred, CustomException {
-        return userDao.getExamsByExamId(uriInfo, userId,examId);
+	public Response getExamsByExamId(int userId, int examId) throws ExceptionOccurred, CustomException {
+        return userDao.getExamsByExamId( userId,examId);
 	}
 	
 }

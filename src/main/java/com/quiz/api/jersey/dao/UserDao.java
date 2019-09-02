@@ -26,7 +26,7 @@ import com.quiz.api.jersey.utils.ConstantUtils;
 import com.quiz.api.jersey.utils.HateoasUtils;
 import com.quiz.api.jersey.utils.Links;
 
-public class UserDao implements UserService {
+public class UserDao {
 
 	private static final Logger LOG = Logger.getLogger(UserDao.class);
 	private static List<UserBean> userList;
@@ -38,25 +38,23 @@ public class UserDao implements UserService {
 		LOG.info("Invoked " +this.getClass().getName());
 	}
 
-	@Override
-	public Response getAllUsers(@Context UriInfo uriInfo) throws ExceptionOccurred {
+	public Response getAllUsers() throws ExceptionOccurred {
 
-		return getUserDetailsInCommon(ConstantUtils.USERS, uriInfo, 0);
+		return getUserDetailsInCommon(ConstantUtils.USERS, 0);
 	}
 
-	@Override
-	public Response getUser(int userId, @Context UriInfo uriInfo) throws ExceptionOccurred {
-		return getUserDetailsInCommon((ConstantUtils.USERS_ID + userId), uriInfo, userId);
+	public Response getUser(int userId) throws ExceptionOccurred {
+		return getUserDetailsInCommon((ConstantUtils.USERS_ID + userId), userId);
 	}
 
-	@Override
-	public Response addUser(UserBean user, @Context UriInfo uriInfo) throws ExceptionOccurred, CustomException {
+	public Response addUser(UserBean user) throws ExceptionOccurred, CustomException {
 		Response userDetailsInCommon = getUserDetailsInCommon(
-				(ConstantUtils.USER_EMAIL + "'" + user.getEmailId() + "'"), uriInfo, 0);
+				(ConstantUtils.USER_EMAIL + "'" + user.getEmailId() + "'"), 0);
 		LOG.info("Status of the user already present is : " + userDetailsInCommon.getStatus());
 		if (userDetailsInCommon.getStatus() != 404) {
+			LOG.error("User Already Present :: "+ user.getEmailId());
 			exceptionLink = new ArrayList<>();
-			exceptionLink.add(HateoasUtils.getSelfDetails(uriInfo));
+			exceptionLink.add(HateoasUtils.getSelfDetails());
 			throw new CustomException("User Already Present", 400,
 					"User alreay present with Emailid " + user.getEmailId() + "", exceptionLink);
 		} else {
@@ -74,23 +72,25 @@ public class UserDao implements UserService {
 				boolean execute = pst.execute();
 				if (!execute) {
 					return getUserDetailsInCommon(
-							(ConstantUtils.USER_EMAIL + "'" + user.getEmailId() + "'"), uriInfo, 0);
+							(ConstantUtils.USER_EMAIL + "'" + user.getEmailId() + "'"), 0);
 				} else {
 					return Response.status(Status.BAD_REQUEST).build();
 				}
 			} catch (Exception e) {
+				LOG.error(e.getMessage());
 				throw new ExceptionOccurred();
 			}
 		}
 	}
 
-	@Override
-	public Response updateUser(UserBean user, int userId, @Context UriInfo uriInfo)
+
+	public Response updateUser(UserBean user, int userId)
 			throws ExceptionOccurred {
-		Response userDetailsInCommon = getUserDetailsInCommon((ConstantUtils.USERS_ID + userId), uriInfo, userId);
+		Response userDetailsInCommon = getUserDetailsInCommon((ConstantUtils.USERS_ID + userId), userId);
 		if(userDetailsInCommon.getStatus() != 200) {
+			LOG.error("User Not Found :: " + userId);
 			exceptionLink = new ArrayList<>();
-			exceptionLink.add(HateoasUtils.getSelfDetails(uriInfo));
+			exceptionLink.add(HateoasUtils.getSelfDetails());
 			return Response.status(Status.NOT_FOUND).entity(new CustomException("User not Found", 404,
 					"User with user Id " + userId + " Not Found", exceptionLink)).build();
 		}else {
@@ -126,10 +126,10 @@ public class UserDao implements UserService {
 				PreparedStatement prepareStatement = conn.prepareStatement(updateUser);
 				int update = prepareStatement.executeUpdate();
 				if (update >= 1) {
-					return getUserDetailsInCommon((ConstantUtils.USERS_ID + userId), uriInfo, userId);
+					return getUserDetailsInCommon((ConstantUtils.USERS_ID + userId), userId);
 				} else {
 					exceptionLink = new ArrayList<>();
-					exceptionLink.add(HateoasUtils.getSelfDetails(uriInfo));
+					exceptionLink.add(HateoasUtils.getSelfDetails());
 					return Response.status(Status.BAD_REQUEST).entity(new CustomException("User update failed", 400,
 							"User with user id " + userId + " has not been updated", exceptionLink)).build();
 				}
@@ -142,9 +142,9 @@ public class UserDao implements UserService {
 		throw new ExceptionOccurred();
 	}
 
-	@Override
-	public Response deleteUser(int userId, @Context UriInfo uriInfo) throws ExceptionOccurred {
-		Response userDetailsInCommon = getUserDetailsInCommon(ConstantUtils.USERS_ID + userId, uriInfo, userId);
+
+	public Response deleteUser(int userId) throws ExceptionOccurred {
+		Response userDetailsInCommon = getUserDetailsInCommon(ConstantUtils.USERS_ID + userId, userId);
 		if (userDetailsInCommon.getStatus() == 200) {
 			try {
 				dbConnection = ApiUtils.getDbConnection();
@@ -152,27 +152,28 @@ public class UserDao implements UserService {
 				int executeUpdate = createStatement.executeUpdate(ConstantUtils.USER_DELETE + userId);
 				if (executeUpdate == 1) {
 					exceptionLink = new ArrayList<>();
-					exceptionLink.add(HateoasUtils.getSelfDetails(uriInfo));
+					exceptionLink.add(HateoasUtils.getSelfDetails());
 					return Response.status(Status.OK).entity(new CustomException("User Deleted", 200,
 							"User with user Id " + userId + " deleted", exceptionLink)).build();
 				} else {
 					exceptionLink = new ArrayList<>();
-					exceptionLink.add(HateoasUtils.getSelfDetails(uriInfo));
+					exceptionLink.add(HateoasUtils.getSelfDetails());
 					return Response.status(Status.BAD_REQUEST).entity(new CustomException("User not Deleted", 400,
 							"User with user Id " + userId + " Not deleted", exceptionLink)).build();
 				}
 			} catch (Exception e) {
+				LOG.error(e.getMessage());
 				throw new ExceptionOccurred();
 			}
 		} else {
 			exceptionLink = new ArrayList<>();
-			exceptionLink.add(HateoasUtils.getSelfDetails(uriInfo));
+			exceptionLink.add(HateoasUtils.getSelfDetails());
 			return Response.status(Status.NOT_FOUND).entity(new CustomException("User not Found", 404,
 					"User with user Id " + userId + " Not Found", exceptionLink)).build();
 		}
 	}
 
-	private static Response getUserDetailsInCommon(String statement, @Context UriInfo uriInfo, int id)
+	private static Response getUserDetailsInCommon(String statement, int id)
 			throws ExceptionOccurred {
 
 		userList = new ArrayList<>();
@@ -197,9 +198,9 @@ public class UserDao implements UserService {
 				if (id == 0) {
 					// links.add(HateoasUtils.getAlluserDetails(uriInfo));
 					relMessage = "getUserById";
-					links.add(HateoasUtils.getDetailsById(uriInfo, result.getInt("userId"),relMessage));
+					links.add(HateoasUtils.getDetailsById(result.getInt("userId"),relMessage));
 				} else {
-					links.add(HateoasUtils.getSelfDetails(uriInfo));
+					links.add(HateoasUtils.getSelfDetails());
 				}
 				user.setLinks(links);
 
@@ -215,7 +216,7 @@ public class UserDao implements UserService {
 			}).build();
 		} else {
 			exceptionLink = new ArrayList<>();
-			exceptionLink.add(HateoasUtils.getSelfDetails(uriInfo));
+			exceptionLink.add(HateoasUtils.getSelfDetails());
 			return Response.status(Status.NOT_FOUND).entity(
 					new CustomException("User Not Found", 404, "User with user id " + id + " not found", exceptionLink))
 					.build();
@@ -223,15 +224,15 @@ public class UserDao implements UserService {
 
 	}
 
-	public Response getExamsByExamAndUserId(UriInfo uriInfo, int userId) throws ExceptionOccurred {
-		return getCommonExams(uriInfo, userId, 0);
+	public Response getExamsByExamAndUserId(int userId) throws ExceptionOccurred {
+		return getCommonExams(userId, 0);
 	}
 
-	public Response getExamsByExamId(UriInfo uriInfo, int userId, int examId) throws ExceptionOccurred {
-		return getCommonExams(uriInfo, userId, examId);
+	public Response getExamsByExamId(int userId, int examId) throws ExceptionOccurred {
+		return getCommonExams(userId, examId);
 	}
 
-	public Response getCommonExams(UriInfo uriInfo, int userId, int examId) throws ExceptionOccurred {
+	public Response getCommonExams(int userId, int examId) throws ExceptionOccurred {
 		examList = new ArrayList<>();
 		try {
 			dbConnection = ApiUtils.getDbConnection();
@@ -258,11 +259,11 @@ public class UserDao implements UserService {
 				
 				//LOG.info("result.getFetchSize() -1 " + result.getRow()+ " "+result.getInt(1));
 				if(examId == 0) {
-					links.add(HateoasUtils.getDetailsById(uriInfo, result.getInt(1), relMessage));
+					links.add(HateoasUtils.getDetailsById(result.getInt(1), relMessage));
 				}else if(result.getRow() == 1){
-					links.add(HateoasUtils.getDetailsById(uriInfo, result.getInt(1), relMessage));					
+					links.add(HateoasUtils.getDetailsById(result.getInt(1), relMessage));
 				}else {
-					links.add(HateoasUtils.getSelfDetails(uriInfo));
+					links.add(HateoasUtils.getSelfDetails());
 				}
 				exam.setLinks(links);
 				examList.add(exam);
@@ -278,7 +279,7 @@ public class UserDao implements UserService {
 			}).build();
 		} else {
 			exceptionLink = new ArrayList<>();
-			exceptionLink.add(HateoasUtils.getSelfDetails(uriInfo));
+			exceptionLink.add(HateoasUtils.getSelfDetails());
 			return Response.status(Status.NOT_FOUND).entity(new CustomException("No Exams Found", 404,
 					"we dont find exams for above details", exceptionLink)).build();
 		}

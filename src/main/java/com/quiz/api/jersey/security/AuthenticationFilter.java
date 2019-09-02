@@ -42,8 +42,8 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 			LOG.info("#### valid token : " + jwtToken);
 			LOG.info("#### valid token Details : " + parseClaimsJws.getBody().get("name"));
 		} catch (Exception e) {
-			// e.printStackTrace();
-			requestContext.abortWith(HateoasUtils.unAuthorizedException(uriInfo));
+			LOG.error(e.getMessage());
+			requestContext.abortWith(HateoasUtils.unAuthorizedException());
 		}
 
 	}

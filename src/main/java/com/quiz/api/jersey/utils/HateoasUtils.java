@@ -3,6 +3,7 @@ package com.quiz.api.jersey.utils;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.core.Response.Status;
@@ -16,6 +17,8 @@ import com.quiz.api.jersey.security.AuthenticationController;
 public class HateoasUtils {
 	 
 	private static final Logger LOG = Logger.getLogger(HateoasUtils.class);
+	@Context
+	private static  UriInfo uriInfo;
 	private HateoasUtils() {
 		LOG.info("Invoked " +this.getClass().getName());
 	}
@@ -23,7 +26,7 @@ public class HateoasUtils {
 	static private Links link;
 	static private List<Links> exceptionLink;
 	static private CustomException exception;
-	public static Links getDetailsById(UriInfo uriInfo,int id, String message) {
+	public static Links getDetailsById(int id, String message) {
 		//System.out.println(id);
 		link = new Links();	
 		try{
@@ -38,7 +41,7 @@ public class HateoasUtils {
 		return link;
 	}
 
-	public static Links getSelfDetails(UriInfo uriInfo) {
+	public static Links getSelfDetails() {
 		link = new Links();
 		try {
 		String userLink = uriInfo.getAbsolutePathBuilder().build().toString();
@@ -50,7 +53,7 @@ public class HateoasUtils {
 		return link;
 	}
 
-	public static Response unAuthorizedException(UriInfo uriInfo) {
+	public static Response unAuthorizedException() {
 		
 		UriBuilder path = uriInfo.getBaseUriBuilder().path(AuthenticationController.class);
 		link = new Links();
@@ -64,9 +67,9 @@ public class HateoasUtils {
 		return Response.status(Status.UNAUTHORIZED).entity(exception).build();
 	}
 
-	public static Response userNotFound(UriInfo uriInfo) {
+	public static Response userNotFound() {
 		exceptionLink= new ArrayList<>();
-		exceptionLink.add(HateoasUtils.getSelfDetails(uriInfo));
+		exceptionLink.add(HateoasUtils.getSelfDetails());
 		exception=new CustomException("Unauthorized - User not found", 404,
 				"User for the given credentials is not found ", exceptionLink);
 		return Response.status(Status.NOT_FOUND).entity(exception).build();

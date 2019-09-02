@@ -34,21 +34,23 @@ public class UserController{
 	private static final Logger LOG = Logger.getLogger(UserController.class);
 	private static final UserServiceImpl userServiceImpl = new UserServiceImpl();
 	private static final ExecutorService executorService = ThreadExecutor.getExecutor();
-	
+	@Context
+	UriInfo uriInfo;
+
 	public UserController() {
-		LOG.info("Invoked " +this.getClass().getName());
+		LOG.info("Invoked : " +this.getClass().getName());
 	}
 
 	@GET
 	@Authenticate
-	public void  getAllUsers(@Context UriInfo uriInfo, @Suspended AsyncResponse asyncResponse) {
+	public void  getAllUsers(@Suspended AsyncResponse asyncResponse){
 
     CompletableFuture.supplyAsync(()->{
        		Response allusers = null;
 		   try {
-			   allusers = userServiceImpl.getAllUsers(uriInfo);
+			   allusers = userServiceImpl.getAllUsers();
 		   } catch (ExceptionOccurred | CustomException exception) {
-			   exception.printStackTrace();
+			  LOG.error("Exception Occurred : "+ exception.getMessage());
 		   }
 		   return allusers;
 	   }, executorService ).thenAccept(response -> asyncResponse.resume(response));
@@ -57,14 +59,14 @@ public class UserController{
 
 	@GET
 	@Path("{userId : [0-9]*}")
-	public void getUser(@PathParam("userId") int userId,@Context UriInfo uriInfo, @Suspended AsyncResponse asyncResponse ) throws ExceptionOccurred, CustomException {
+	public void getUser(@PathParam("userId") int userId,@Suspended AsyncResponse asyncResponse ) throws ExceptionOccurred, CustomException {
 		
 		CompletableFuture.supplyAsync(()->{
 			Response user = null;
 			try {
-				user = userServiceImpl.getUser(userId, uriInfo);
+				user = userServiceImpl.getUser(userId);
 			} catch (ExceptionOccurred | CustomException exception) {
-				exception.printStackTrace();
+				LOG.error("Exception Occurred : "+ exception.getMessage());
 			}
 			return user;
 		},executorService).thenAccept(response -> asyncResponse.resume(response));
@@ -72,11 +74,11 @@ public class UserController{
 	}
 
 	@POST
-	public void addUser(UserBean user, @Context UriInfo uriInfo, @Suspended AsyncResponse asyncResponse) throws ExceptionOccurred, CustomException {
+	public void addUser(UserBean user,@Suspended AsyncResponse asyncResponse) throws ExceptionOccurred, CustomException {
 		CompletableFuture.supplyAsync(()->{
 			Response addUser = null;
 			try {
-				addUser = userServiceImpl.addUser(user, uriInfo);
+				addUser = userServiceImpl.addUser(user);
 			} catch (ExceptionOccurred | CustomException exception) {
 				exception.printStackTrace();
 			}
@@ -86,11 +88,11 @@ public class UserController{
 
 	@PUT
 	@Path("{userId}")
-	public void updateUser(UserBean user, @PathParam("userId") int userId,@Context UriInfo uriInfo, @Suspended AsyncResponse asyncResponse) throws ExceptionOccurred, CustomException{
+	public void updateUser(UserBean user, @PathParam("userId") int userId, @Suspended AsyncResponse asyncResponse) throws ExceptionOccurred, CustomException{
 		CompletableFuture.supplyAsync(()->{
 			Response updateUser = null;
 			try {
-				updateUser = userServiceImpl.updateUser(user,userId,uriInfo);
+				updateUser = userServiceImpl.updateUser(user,userId);
 			} catch (ExceptionOccurred | CustomException exception) {
 				exception.printStackTrace();
 			}
@@ -100,11 +102,11 @@ public class UserController{
 
 	@DELETE
 	@Path("{userId}")
-	public void deleteUser(@PathParam("userId") int userId,@Context UriInfo uriInfo, @Suspended AsyncResponse asyncResponse) throws ExceptionOccurred, CustomException {
+	public void deleteUser(@PathParam("userId") int userId, @Suspended AsyncResponse asyncResponse) throws ExceptionOccurred, CustomException {
 		CompletableFuture.supplyAsync(()->{
 			Response deleteUser = null;
 			try {
-				deleteUser = userServiceImpl.deleteUser(userId,uriInfo);
+				deleteUser = userServiceImpl.deleteUser(userId);
 			} catch (ExceptionOccurred | CustomException exception) {
 				exception.printStackTrace();
 			}
