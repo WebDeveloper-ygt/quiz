@@ -11,7 +11,7 @@ public interface ExamService {
 
 	//public Response getExamsByExamAndUserId(UriInfo uriInfo, int userId) throws ExceptionOccurred, CustomException;
 	//public Response getExamsByExamId(UriInfo uriInfo,int userId,int examId) throws ExceptionOccurred, CustomException;
-    Response addExams(UriInfo uriInfo, ExamBean examBean, int userId) throws ExceptionOccurred, CustomException;
-	Response updateExams(UriInfo uriInfo, ExamBean examBean, int userId, int examId) throws ExceptionOccurred, CustomException;
-	Response deleteExams(UriInfo uriInfo, int userId, int examId) throws ExceptionOccurred, CustomException;
+    Response addExams(ExamBean examBean, int userId) throws ExceptionOccurred, CustomException;
+	Response updateExams(ExamBean examBean, int userId, int examId) throws ExceptionOccurred, CustomException;
+	Response deleteExams(int userId, int examId) throws ExceptionOccurred, CustomException;
 }

@@ -39,6 +39,7 @@ public class UserExamController{
 	private static final ExamServiceImpl examServiceImpl = new ExamServiceImpl();
 	private static final ExecutorService executorService = ThreadExecutor.getExecutor();
 	@Context UriInfo uriInfo;
+
 	UserExamController() {
 		LOG.info("Invoked " +this.getClass().getName());
 	}

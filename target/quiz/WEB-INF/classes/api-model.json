@@ -1,0 +1,60 @@
+{
+  "User": {
+    "userId": "",
+    "userName": "",
+    "firstName": "",
+    "lastName": "",
+    "emailId": "",
+    "phoneNumber": "",
+    "List<Exams>": "",
+    "instituteName": ""
+  },
+  "Exams": {
+    "examId": "",
+    "examName": "",
+    "examDuration": "",
+    "negativeMarks": "",
+    "numberOfQuestions": "",
+    "List<Attendees>": "",
+    "examStatus": ""
+  },
+  "Attendees": {
+    "attendeeId": "user.UserId",
+    "attendeeScore": "",
+    "attendeeResult": "",
+    "examTaken": "exams.ExamId"
+  },
+  "Question": {
+    "questionId": "",
+    "questionName": "",
+    "questionType": "",
+    "List<QuestionOption>": "",
+    "examId": "exams.ExamId"
+  },
+  "QuestionOption": {
+    "Option-A": "",
+    "Option-B": "",
+    "Option-C": "",
+    "Option-D": "",
+    "Option-Correct": ""
+  },
+  "endpoints": {
+    "admin": "/api/exams",
+    "admin-1": "/api/exams/<exam-id>",
+    "admin-2": "/api/questions",
+    "admin-3": "/api/questions?queName=",
+    "admin-4": "/api/users",
+    "user": "/api/users/<user-id>",
+    "user-1": "/api/users/<user-id>/exams/",
+    "user-2": "/api/users/<user-id>/exams/<exam-id>",
+    "user-3": "/api/users/<user-id>/exams/<exam-id>/questions/<question-id>",
+    "user-5": "/api/user/<user-id>/exams/<exam-id>/questions/search?queName="
+  },
+  "database": {
+    "quiz_users" : "CREATE TABLE `quiz_users` (\n  `userId` int(11) NOT NULL AUTO_INCREMENT,\n  `userName` varchar(45) NOT NULL,\n  `firstName` varchar(45) NOT NULL,\n  `lastName` varchar(45) NOT NULL,\n  `emailId` varchar(45) NOT NULL,\n  `phoneNumber` varchar(11) NOT NULL,\n  `instituteName` varchar(45) NOT NULL,\n  `role` varchar(45) NOT NULL DEFAULT 'user',\n  `password` varchar(255) NOT NULL,\n  PRIMARY KEY (`userId`),\n  UNIQUE KEY `emailId_UNIQUE` (`emailId`),\n  UNIQUE KEY `phoneNumber_UNIQUE` (`phoneNumber`)\n) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;\n",
+    "quiz_exams" : "CREATE TABLE `quiz_exams` (\n  `examId` int(11) NOT NULL AUTO_INCREMENT,\n  `examName` varchar(45) NOT NULL,\n  `examDuration` int(11) NOT NULL DEFAULT '30',\n  `negativeMarks` int(11) NOT NULL DEFAULT '0',\n  `numberOfQuestions` int(11) NOT NULL DEFAULT '30',\n  `examStatus` varchar(45) NOT NULL DEFAULT 'open',\n  `userId` int(11) NOT NULL,\n  PRIMARY KEY (`examId`,`userId`),\n  KEY `userId_idx` (`userId`),\n  CONSTRAINT `userId` FOREIGN KEY (`userId`) REFERENCES `quiz_users` (`userId`) ON DELETE CASCADE ON UPDATE NO ACTION\n) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;",
+    "quiz_questions" : "CREATE TABLE `quiz_questions` (\n  `questionId` int(11) NOT NULL AUTO_INCREMENT,\n  `questionType` varchar(45) NOT NULL DEFAULT 'MutlipleChoice',\n  `questionName` text NOT NULL,\n  `examId` int(11) NOT NULL,\n  PRIMARY KEY (`questionId`)\n) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;\n\n",
+    "quiz_options" : "CREATE TABLE `question_options` (\n  `questionId` int(11) NOT NULL AUTO_INCREMENT,\n  `optionA` varchar(45) NOT NULL,\n  `optionB` varchar(45) NOT NULL,\n  `optionC` varchar(45) DEFAULT NULL,\n  `optionD` varchar(45) DEFAULT NULL,\n  `optionCorrect` varchar(45) NOT NULL,\n  PRIMARY KEY (`questionId`)\n) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;\n"
+
+  }
+}
